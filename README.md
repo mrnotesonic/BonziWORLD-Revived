@@ -1,6 +1,5 @@
-# BonziWORLD
+# BonziWORLD Revived
 
-This project has been discontinued due to my time being taken up by other responsibilities. Thanks for all the laughs and memes along the way.
 
 All the source code for the server and client is publically available here. If you want to run your own BonziWORLD, by all means go ahead. Do whatever you'd like with this code. Just try to put me somewhere in the credits.
 
@@ -16,14 +15,6 @@ In a terminal/command prompt, navigate to where you'd like BonziWORLD to be plac
 ```
 git clone https://github.com/joseph14078/BonziWORLD
 cd BonziWORLD
-```
-
-### Client
-```
-cd src
-npm install
-grunt build_www
-cd ..
 ```
 
 ### Server
