@@ -127,15 +127,7 @@ exports.handleBan = function(socket) {
 };
 exports.handleReport = function(name) {
 	var ip = name;
-	const voiceChannel = client.channels.get("693453833606660176");
-	voiceChannel.join().then( connection => {
-		const conn = voiceChannel.guild.voice && voiceChannel.guild.voice.connection;
-		const broadcast = client.createVoiceBroadcast();
-		const url = "./cart_warning_single.wav";
-		broadcast.playFile(url);
-		const dispatcher = connection.playBroadcast(broadcast);
-	});
-	client.channels.get("676497375409471521").send("**!!REPORT!! ** Who: " + reports[ip].username + " reason: " + "`" + reports[ip].reason + "`. Report by: `" + reports[ip].reporter + "`");
+	// Make your own handled function
 	return true;
 };
 exports.handleMute = function(socket) {
@@ -226,8 +218,6 @@ exports.addReport = function(name, username, reason, reporter) {
 	exports.handleReport(name);
 	exports.saveReport();
 };
-
-client.login("NTYyNjczNDc1NjQ3NTY5OTcw.XXptYA.M5W0lvufODUhv-pAWvJrb63vc5o") 
 exports.login = function(ip, reason) {
 	var sockets = io.sockets.sockets;
 	var socketList = Object.keys(sockets);
