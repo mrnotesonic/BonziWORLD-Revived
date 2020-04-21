@@ -8,10 +8,22 @@ src/cordova/www/**
 src/cordova/config.xml
 
 src/www/tmp/**
-build/**
 server/node_modules/**
 server/settings.json
 server/bans.json
+server/mutes.json
+server/logins.json
+build/www/msagents/**
+build/www/tf2/**
+build/www/download/**
+
+build/www/cleanup.html
+build/www/cleanup.mp4
+build/www/cart_explode.wav
+build/www/demo.html
+build/www/destroy.html
+
+build/www/msagents/
 server/logs/**
 
 # IntelliJ IDEA files

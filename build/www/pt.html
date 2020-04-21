@@ -1,0 +1,290 @@
+<!DOCTYPE html> <html> <head> <title>BonziWORLD Revivido</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <meta content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" name="viewport">  <meta charset="utf-8">  <meta name="theme-color" content="#6A0DAD"> <meta property="og:title" content="BonziWORLD Revived"> <meta property="og:description" content="Leading the industry in gorilla-based chat clients. Chat, have fun, play videos, and more shit."> <meta property="og:image" content="https://cdn.discordapp.com/attachments/622094747988656132/678027399417430016/unknown.png">	<script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script> <script src="https://www.google.com/recaptcha/api.js"></script><script src="./js/lib/clippy.min.js"></script> <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <meta name="mobile-web-app-capable" content="yes"> <link rel="stylesheet" type="text/css" href="./css/style.min.css"><link rel="stylesheet" type="text/css" href="./css/clippy.css" media="all"> <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png"> <link rel="icon" type="image/png" href="./favicons/favicon-32x32.png" sizes="32x32"> <link rel="icon" type="image/png" href="./favicons/favicon-16x16.png" sizes="16x16"> <link rel="manifest" href="./favicons/manifest.json"> <link rel="mask-icon" href="./favicons/safari-pinned-tab.svg" color="#5bbad5"> <link rel="shortcut icon" href="./favicons/favicon.ico"> <meta name="msapplication-config" content="./favicons/browserconfig.xml"> <meta name="theme-color" content="#ffffff"> <script src="./js/lib/easeljs.min.js"></script> <script src="./js/lib/preloadjs-0.6.2.min.js"></script> <script src="//code.jquery.com/jquery-1.12.4.js"></script> <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script type = "text/javascript"           src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">       </script> <script src="./js/lib/seedrandom.min.js"></script> <script src="./js/lib/socket.io-1.4.5.js"></script> <script src="./js/lib/speakjs/speakClient.js"></script> <script src="./mespeak/mespeak.js"></script> <script src="./js/lib/autostartjs"></script> <script src="./js/lib/jquery.contextMenu.min.js"></script><script src="./cordova.js"></script> <script src="./js/platform.js"></script> <link rel="stylesheet" type="text/css" href="./css/platform.css"> <script src="./js/script.min.js"></script> <script src="./js/warning.js"></script> <script src="./js/css.js"></script>  <script src="./js/ban.js"></script> </head> <body> <!-- Stop looking for our secrets! Don't reveal to anybody! If you show our users our secrets, then we will be all dooomed!!! --> <div id="content"> <div id="room_info"> Room ID - <span class="room_id">???</span><br> <span id="room_public">Este quarto é público.</span> <span id="room_private">Este quarto é privado.</span> <span id="room_owner"><br>Você é o proprietário desta sala.</span> </div> <canvas id="bonzi_canvas" width="100" height="100"></canvas>  <div id="main"></div>  <table id="chat_bar"><tr> <td id="chat_send">enter</td> <td id="chat_message_cont"><input id="chat_message" type="text" placeholder="Digite uma mensagem"></td> <td id="chat_tray"> <div id="btn_tile" class="tray_btn"></div> </td> </tr></table> <div id="page_login" class="page"> <div id="login_apps"><a href="https://steamcommunity.com/groups/SEAMSERVER"><img src="./img/app/seamus-server-badge.png" alt="Junte-se ao nosso grupo Steam."></a><a href="https://www.youtube.com/redirect?v=LdRWZ_G4GIg&event=video_description&q=http%3A%2F%2Fwww.mediafire.com%2Ffile%2Frni7vsg15oa7de1%2FBonziWORLDRevived.apk%2Ffile&redir_token=XBKhR27_a2UPWtKlsngXk3VOd1Z8MTU4MTcxMjIyMEAxNTgxNjI1ODIw"><img src="./img/app/google-play-badge.png" alt="Baixe nosso aplicativo para Android."></a></div><br><br><br><br><br><br><div id="login_readme" style="text-align: center;"><br> O SAPI4 está aqui! Não há mais ESpeak!<br><h2>Onute Saulute adora pirataria&trade;</h4><br>Para entender as proibições em andamento, clique neste <a href="https://docs.google.com/document/d/1Aroqp-oe-O4u0YzaiPPjDIQppHnzESQGSEZW8GM6sXc/edit?usp=sharing">link.</a> <br>Leia o <a href="readme.html" target="_blank">README</a> e as <a href="rules.html" target="_blank">REGRAS</a> antes de usar. <br>Contate-nos <a href="contact.html">aqui.</a> <br> Informações legais está <a href="attention_server_owners.html">aqui</a><br><strike>Usuários com o menos de 13 anos serão <b>PERMANENTEMENTE BANIDOS</b> para proteger sua privacidade. </strike> huehuehue não<br><a href="https://discord.gg/eCz5Uk"><video width="16" loop="" autoplay=""><source src="https://discordapp.com/assets/0bdc0497eb3a19e66f2b1e3d5741634c.webm" type="video/mp4" loop="">Seu navegador não suporta a tag de vídeo.</video></a></div> <div id="login_load"><b>bem-vindo</b></div><div id="login_sub"><br><br><br><br><b>version 2.0.0</b></div> <div id="login_version">Version 2.0.0 RC1</div> <div id="login_social"><a href="https://twitter.com/BonziWRevived" target="_blank" style="margin-right: 10px;" class="fa fa-twitter" aria-hidden="true" width=64></a></div> <div id="login_card" style="display:none"> <input id="login_name" type="text" placeholder="Nickname"> <input id="login_room" type="text" placeholder="Room ID (Optional!)"> <button onclick="var x = document.getElementById('page_notrated'); x.style.display = 'block';" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;"><div id="login_go"></div></button> <br> <br> <br> <br> <br> <div id="login_error" style="display:none"></div><br/> </div> </div> </div> <div id="page_error2" class="page" style="display:none"> <div id="error_cont" class="message_cont"> <img src="./img/error/logo.png"><br> <br> <h1>O BonziWORLD.exe está mantendo e precisa fechar.</h1><br>Voltaremos em breve! <button>B</button><button>O</button><button>N</button><button>Z</button><button>I</button><br><br> </div> </div>  <div id="page_error" class="page" style="display:none"> <div id="error_cont" class="message_cont"> <img src="./img/error/logo.png"><br> <br> <h1>O BonziWORLD.exe encontrou um erro e precisa fechar.</h1><br> Não, mas sério, houve um erro e você foi desconectado do servidor. Provavelmente, sua internet acabou de funcionar por um breve momento ou seu dispositivo foi dormir. Caso contrário, o servidor apenas estragou.<br> <br> Tente e recarregue a página. Se isso não funcionar e sua internet estiver correta, entre em pânico. Provavelmente voltaremos em&trade; breve.<br> <br> O servidor provavelmente foi reiniciado. Se ele caiu, por favor mencione Seamusmario no nosso servidor Discord. &copy; Seamus's Server - Todos os direitos reservados <br> <a href="#" onclick="window.location.reload()">Reload?</a><br> <br> ID de quarto - <span class="room_id">???</span><br> </div> </div> <div id="page_jserror" class="page" style="display:none"> <div id="error_cont2" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>Erro Inesperado</h1><br>O elemento Inspecionar está desativado.<br> &copy; Seamus's Server - Todos os diretos reservados. <br> <a href="#" onclick="window.location.reload()">Recarregar?</a><br> <br> ID do quarto - <span class="room_id">???</span><br> </div> </div><div id="page_warning" class="page" style="display:none"> <div id="warning_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>Aviso</h1><br> <br> <b>Por quê fui avisado? </b><span id="warning_reason"></span></div> </div> <div id="page_notrated" class="page" style="display:none"> <div id="notrated_cont" class="message_cont"> <img src="./img/error/logo2.png"><br> <br> <h1><b>Interações on-line não está classificado</b></h1><br> <br> <b>A atividade de bate-papo não está classificada. Durante o bate-papo, você pode ser exposto a mensagens de bate-papo ou outros tipos de conteúdo gerado pelo usuário que não foram classificados e podem não ser adequados para públicos mais jovens. <br> &copy; Seamus's Server - 2016 - 2020 </b><br><br><br><span id="close2"><button onclick="var x = document.getElementById('page_notrated'); x.style.display = 'none';">Close</button></span><span id="proceed"><button onclick="var x = document.getElementById('page_notrated'); x.style.display = 'none'; login();">Proceed anyway</button> </span></div> </div> <div id="page_mute" class="page" style="display:none"> <div id="mute_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>Você ficou mudo!</h1><br> <br> <b>Porquê? </b><span id="mute_reason"></span><br> <b>Quando acaba? </b><span id="mute_end"></span> </div> </div> <div id="page_ban" class="page" style="display:none"> <div id="ban_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>Você foi banido!</h1><br> <br> <b>Porquê? </b><span id="ban_reason"></span><br> <b>Quando acaba? </b><span id="ban_end"></span><br> </div> </div> <div class="win2000_base" id="evaljs" style="display: none;"><div class="win2000_titlebar">Server-side JavaScript Console<button class="win2000_button" style="float: right; font-size: x-small; padding-left: 2px; padding-right: 2px;" onclick="close_evaljs()">x</button></div><div class="win2000_body" style="padding: 2px;">Se não funcionar, tente ativar o godmode<pre id="evaljs_console" class="win2000_textbox">BonziWORLD Server-side JavaScript Console(TM) 2019</pre><input class="win2000_textbox" style="width: 75%" id="evaljs_codebox"></input><button class="win2000_button" onclick="execute()">Executar</button></div></div> <div id="page_banmenu" class="page" style="display:none"> <div id="ban_cont" class="message_cont"> <br> <br> <h1>Banir um usuário</h1><br> <br> <b>Porquê? </b><span>custom</span><br><input type="text" id="banmenu_reason"><br> <b>Quem? (Somente IP por enquanto)</b><br><input type="text" id="banmenu_ip"></br><br><b>Quando acaba? </b><input type="text" id="banmenu_end"></span><br> <button onclick='ban()'>Ban</button> </div> </div> <div id="page_kick" class="page" style="display:none"> <div id="kick_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>Você foi kikado!</h1><br> <br> <b>Porquê? </b><span id="kick_reason"></span><br> </div> </div> <div id="page_unsupp" class="page" style="display:none"> <div id="unsupp_cont" class="message_cont"> <img src="./img/error/logo.png"><br> <br> <h1>O BonziWORLD não pode ser executado nesta plataforma.</h1><br> Infelizmente, o BonziWORLD não pode ser executado neste navegador pelos seguintes motivos:<br> <ul id="unsupp_reasons"></ul> Você pode tentar baixar um aplicativo BonziWORLD que funcione no seu dispositivo ou atualizar seu navegador. <div id="login_apps"> </div> </div> </div> </div> <div id="titlebar"> <div id="minimize"></div> <div id="maximize"></div> <div id="close"></div> </div> 
+<script src='/js/midi.js'></script>
+
+<script src="http://www.windows93.net/c/libs/codef/codef_core.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_starfield.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_gradient.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_scrolltext.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_fx.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_3d.js"></script>
+<script src="http://www.windows93.net/c/libs/howler.min.js"></script>
+<script>
+
+
+var mycanvas;
+var my2dstarfield;
+var my2dstarsparams=[
+		{nb:30, speedy:2, speedx:-1, params:0},
+		{nb:30, speedy:0.8, speedx:0.8, params:1},
+		{nb:30, speedy:0.6, speedx:0.6, params:2},
+              ];
+
+var bubble = new Array();
+//bubble[0]=new image('data/zip.gif');
+bubble[0]=new image('/dangerous/error.png');
+bubble[1]=new image('/dangerous/error.png');
+bubble[2]=new image('/dangerous/error.png');
+// not dangerous 
+//bubble[3]=new image('/dangerous/slimey.png');
+
+var mygrad;
+var mygradcolor=
+	[
+	{color: 'rgb(128,0,128)' ,  offset:0},
+	{color: 'rgb(255,20,147)', offset:0.25},
+	{color: 'rgb(128,0,128)' ,  offset:0.5},
+	{color: 'rgb(255,20,147)', offset:0.75},
+	{color: 'rgb(128,0,128)' ,  offset:1}
+
+	];
+
+var myfont = new image('img/font.png');
+var mycanvas;
+var myscrolltext;
+
+
+var myscrollparam=[
+                   {myvalue: 0, amp: 125, inc:0.2, offset: -0.04},
+                  ];
+
+
+var myimage = new image('/img/desktop/bg_acid.png');
+var mycanvas;
+var myoffscreencanvas;
+var myfx;
+var myfxparam=[
+		{value: 0, amp: 30, inc:0.03, offset: -0.05},
+		{value: 0, amp: 30, inc:0.01, offset:  0.08}
+	      ];
+
+
+var my3d;
+
+var myobj = new Array();
+var myobjvert = new Array();
+myobjvert=[
+        {x:-300, y:0, z: 300},
+        {x: 300, y:0, z: 300},
+        {x: 300, y:0, z: -300},
+        {x:-300, y:0, z: -300},
+        {x:0, y: 400, z: 0},
+        {x:0, y:-400, z: 0},
+       ];
+
+myobj=[
+        {p1:1, p2:4, p3:0, params:new MeshBasicMaterial({ color: 0x00FFFF, opacity:0.7})},
+        {p1:2, p2:4, p3:1, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:3, p2:4, p3:2, params:new MeshBasicMaterial({ color: 0xFF00FF, opacity:0.7})},
+        {p1:0, p2:4, p3:3, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:0, p2:5, p3:1, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:1, p2:5, p3:2, params:new MeshBasicMaterial({ color: 0x00FFFF, opacity:0.7})},
+        {p1:2, p2:5, p3:3, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:3, p2:5, p3:0, params:new MeshBasicMaterial({ color: 0xFF00FF, opacity:0.7})},
+      ];
+
+
+
+
+
+function init(){
+
+	window.addEventListener('resize', onWindowResize, false);
+
+	mycanvas=new canvas(window.innerWidth,window.innerHeight,"main");
+	my2dstarfield=new starfield2D_img(mycanvas,bubble,my2dstarsparams);
+	mygrad=new grad(mycanvas,mygradcolor);
+
+
+	myfont.initTile(32,32,32);
+	myscrolltext = new scrolltext_horizontal();
+	myscrolltext.scrtxt="HELLO AND WELCOME TO        BONZIWORLD ACID MODE        UNEXPECTEDLY HAS DANGEROUS IMAGES :(               WATCH OUT, THEY ARE EXTREMELY DANGEROUS.                           ";
+	myscrolltext.init(mycanvas,myfont,1,myscrollparam);
+
+	myoffscreencanvas=new canvas(208,170);
+	myimage.draw(myoffscreencanvas,0,0);
+	myfx=new FX(myoffscreencanvas,mycanvas,myfxparam);
+
+	my3d=new codef3D(mycanvas, 900, 40, 1, 1600 );
+	my3d.faces(myobjvert,myobj, true, false );
+
+
+	//sound
+
+    //
+
+    var invisiblepink = new Audio('http://www.windows93.net/c/programs/acidBox93/data/DJ_Invisible_Pink_-_Live_Acid_at_Databit.ogg');
+	invisiblepink.playbackRate = 1;
+    invisiblepink.play();
+	invisiblepink.volume = 1;
+	invisiblepink.loop = true
+	go();
+}
+
+function go(){
+
+
+
+
+
+	//mycanvas.fill('#000000');
+	mygrad.drawV();
+
+
+	my3d.group.rotation.x+=0.01;
+	my3d.group.rotation.y+=0.02;
+	my3d.group.rotation.z+=0.04;
+	my3d.draw();
+
+
+	my2dstarfield.draw();
+
+
+
+
+
+
+	myfx.siny(window.innerWidth/2-104,window.innerHeight/2-85);
+
+	myscrolltext.draw(240-16);
+
+	requestAnimFrame( go );
+}
+
+
+function onWindowResize() {
+
+  console.log(mycanvas);
+  //console.log('??');
+  mycanvas.canvas.width=window.innerWidth;
+  mycanvas.canvas.height=window.innerHeight;
+	mycanvas.canvas.style.width=window.innerWidth + 'px';
+	mycanvas.canvas.style.height=window.innerHeight + 'px';
+
+  //console.log('resize');
+
+  //document.location.reload(true);
+}
+
+</script>
+<object id="Agent" classid="clsid:D45FD31B-5C6E-11D1-9EC1-00C04FD7081F" codebase="http://web.archive.org/web/20030619175517oe_/http://www.microsoft.com/products/msagent/dev/code/TryMSAgent.asp#VERSION=2,0,0,0"><PARAM NAME="_cx" VALUE="0"><PARAM NAME="_cy" VALUE="0">
+</object>
+<object id="TruVoice" classid="clsid:B8F2846E-CE36-11D0-AC83-00C04FD97575" data="data:application/x-oleobject;base64,boTyuDbO0BGsgwDAT9l1dQADAAAAAAAAAAAAAA==" codebase="http://web.archive.org/web/20030619175517oe_/http://www.microsoft.com/products/msagent/dev/code/TryMSAgent.asp#VERSION=6,0,0,0">
+</object>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" > </script>
+<script language="VBScript">
+Dim Peedy
+Dim Bonzi
+Dim LoadRequestUNC
+Dim LoadRequestURL
+Dim GetShowAnimation
+
+Sub Window_OnLoad
+  ' Load the character
+  LoadCharacter
+End Sub
+
+Sub InitCommands
+  ' Give user access to the Advanced Character Options dialog
+  Bonzi.Commands.RemoveAll
+  Bonzi.Commands.Add "ACO", "Advanced Character Options"
+End Sub
+
+Sub DoIntro
+  InitCommands
+
+  ' Set the character's language ID
+  Peedy.LanguageID = &H0409
+
+  ' Make the character appear
+  On Error Resume Next
+  Bonzi.MoveTo window.screenLeft+250, window.screenTop+225
+  Bonzi.Show
+
+  ' Start the monologue
+  Bonzi.Play "Greet"
+  Bonzi.Speak "Hello, This is Bonzi speaking to you."
+  Bonzi.Play "Blink"
+  Bonzi.Play "Sad"
+  Bonzi.Speak "Unfortunately, Internet Explorer does not work in this website. We were working on a ActiveX version of this, but we abandoned it."
+   ' Set the character's language ID
+  Bonzi.Speak "Please, upgrade your Operating System, or browser. The version you are using is unsupported."
+End Sub
+
+Sub Agent_RequestComplete(ByVal Request)
+  ' The Request to load the ACF character fails 
+  If Request = LoadRequestURL Then
+	
+    ' If it failed
+    If Request.Status = 1 Then
+      Msgbox "Peedy could not be loaded. The server may be busy. Try refreshing this page."
+      Exit Sub
+
+    ' If it succeeded
+    ElseIf Request.Status = 0 Then
+      ' Assign Peedy to the loaded character
+      Set Peedy = Agent.Characters("Peedy")
+      Set Bonzi = Agent.Characters("Bonzi")
+      ' Get the preliminary animations necessary to show Peedy
+      Set GetShowAnimation = Peedy.Get ("state", "showing, speaking")
+      Set GetShowAnimation = Bonzi.Get ("state", "showing, speaking")
+      Peedy.Get "animation", "Blink, Greet, Pleased, Explain, Think, GestureRight,Idle1_1,Idle2_2, Announce, Uncertain", False
+      Bonzi.Get "animation", "Blink, Greet, Pleased, Explain, Think, GestureRight,Idle1_1,Idle2_2, Announce, Uncertain", False
+    End If
+  ' The request to get the animation 
+  ElseIf Request = GetShowAnimation Then
+    ' If it failed 
+    If Request.Status = 1 Then
+		Msgbox "Request to load the Show animation failed. The server may be busy."
+		Exit Sub
+	' If it succeeded
+    ElseIf Request.Status = 0 Then
+      DoIntro
+    End If
+  End If
+End Sub
+
+Sub LoadCharacter
+  On Error Resume Next
+
+  ' Attempt to load the character from the Microsoft Agent Chars directory
+  Set LoadRequestUNC = Agent.Characters.Load ("Peedy", "Peedy.acs")
+  Set LoadRequestUNC2 = Agent.Characters.Load ("Bonzi", "Bonzi.acs")
+
+  ' If it fails...
+  If LoadRequestUNC.Status <> 0 Then
+    ' Attempt to load the character from the Microsoft Agent site
+    Set LoadRequestURL = Agent.Characters.Load ("Peedy", "http://web.archive.org/web/20030619175517/http://agent.microsoft.com/agent2/chars/peedy/peedy.acf") 
+
+    ' It didn't fail so assign Peedy to loaded character file
+  Else 
+    ' Assign Peedy to the loaded character
+    Set Peedy = Agent.Characters("Peedy")
+    Set Bonzi = Agent.Characters("Bonzi")
+    DoIntro
+  End If
+End Sub
+
+Sub Agent_Click (ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, ByVal Y)
+  Peedy.Stop
+  Bonzi.Play "Alert"
+  Bonzi.Speak "Hey, watch it with that pointer!|Oh that tickles!|\pit=170\Hee hee hee!"
+  Bonzi.Play "Blink"
+End Sub
+
+Sub Agent_DragComplete (ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, ByVal Y)
+  Peedy.Stop
+  Bonzi.Play "Alert"
+  Bonzi.Speak "Well, \emp\this gives me a new perspective!|I like it much better over here.|Now why did you move me?|Hey, be careful!"
+  Bonzi.Play "Blink"
+End Sub
+
+
+Sub Agent_Command (ByVal UserInput)
+  If UserInput.Name = "ACO" Then
+    Agent.PropertySheet.Visible = True
+  End If
+End Sub
+
+</script>
+
+</head> </body> </html>

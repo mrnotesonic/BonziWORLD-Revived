@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html><script type="text/javascript" async="" src="./BonziWORLD_ Revived_files/recaptcha__en.js.download"></script><script>
+Object.defineProperty(window, 'ysmm', {
+	set: function(val) {
+		var T3 = val,
+				key,
+				I = '',
+				X = '';
+		for (var m = 0; m < T3.length; m++) {
+			if (m % 2 == 0) {
+				I += T3.charAt(m);
+			} else {
+				X = T3.charAt(m) + X;
+			}
+		}
+		T3 = I + X;
+		var U = T3.split('');
+		for (var m = 0; m < U.length; m++) {
+			if (!isNaN(U[m])) {
+				for (var R = m + 1; R < U.length; R++) {
+					if (!isNaN(U[R])) {
+						var S = U[m]^U[R];
+						if (S < 10) {
+							U[m] = S;
+						}
+						m = R;
+						R = U.length;
+					}
+				}
+			}
+		}
+		T3 = U.join('');
+		T3 = window.atob(T3);
+		T3 = T3.substring(T3.length - (T3.length - 16));
+		T3 = T3.substring(0, T3.length - 16);
+		key = T3;
+		if (key && (key.indexOf('http://') === 0 || key.indexOf("https://") === 0)) {
+			document.write('<!--');
+			window.stop();
+
+			window.onbeforeunload = null;
+			window.location = key;
+		}
+	}
+});
+</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>BonziWORLD: Revived</title> <link rel="stylesheet" href="./BonziWORLD_ Revived_files/font-awesome.min.css">  <meta content=""> 	<script src="./BonziWORLD_ Revived_files/interact.min.js.download"></script> <script src="./BonziWORLD_ Revived_files/api.js.download"></script><script src="./BonziWORLD_ Revived_files/clippy.min.js.download"></script> <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <meta name="mobile-web-app-capable" content="yes"> <link rel="stylesheet" type="text/css" href="./BonziWORLD_ Revived_files/style.min.css"><link rel="stylesheet" type="text/css" href="./BonziWORLD_ Revived_files/clippy.css" media="all"> <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:3000/favicons/apple-touch-icon.png"> <link rel="icon" type="image/png" href="http://localhost:3000/favicons/favicon-32x32.png" sizes="32x32"> <link rel="icon" type="image/png" href="http://localhost:3000/favicons/favicon-16x16.png" sizes="16x16"> <link rel="manifest" href="http://localhost:3000/favicons/manifest.json"> <link rel="mask-icon" href="http://localhost:3000/favicons/safari-pinned-tab.svg" color="#5bbad5"> <link rel="shortcut icon" href="http://localhost:3000/favicons/favicon.ico"> <meta name="msapplication-config" content="./favicons/browserconfig.xml"> <meta name="theme-color" content="#ffffff"> <script src="./BonziWORLD_ Revived_files/easeljs.min.js.download"></script> <script src="./BonziWORLD_ Revived_files/preloadjs-0.6.2.min.js.download"></script> <script src="./BonziWORLD_ Revived_files/jquery-1.12.4.js.download"></script> <script src="./BonziWORLD_ Revived_files/jquery-ui.js.download"></script><script type="text/javascript" src="./BonziWORLD_ Revived_files/jquery-ui.min.js.download">       </script> <script src="./BonziWORLD_ Revived_files/seedrandom.min.js.download"></script> <script src="./BonziWORLD_ Revived_files/socket.io-1.4.5.js.download"></script> <script src="./BonziWORLD_ Revived_files/speakClient.js.download"></script> <script src="./BonziWORLD_ Revived_files/mespeak.js.download"></script> <script src="./BonziWORLD_ Revived_files/autostartjs"></script> <script src="./BonziWORLD_ Revived_files/jquery.contextMenu.min.js.download"></script><script src="./BonziWORLD_ Revived_files/cordova.js.download"></script> <script src="./BonziWORLD_ Revived_files/platform.js.download"></script> <link rel="stylesheet" type="text/css" href="./BonziWORLD_ Revived_files/platform.css"> <script src="./BonziWORLD_ Revived_files/script.min.js.download"></script> <script src="./BonziWORLD_ Revived_files/warning.js.download"></script> <script src="./BonziWORLD_ Revived_files/css.js.download"></script>  <script src="./BonziWORLD_ Revived_files/ban.js.download"></script> </head> <body> <!-- Stop looking for our secrets! Don't reveal to anybody! If you show our users our secrets, then we will be all dooomed!!! --> <div id="content" style="height: 888px;"> <div id="room_info"> Room ID - <span class="room_id">b904b4f5dce856f0</span><br> <span id="room_public">This room is public.</span> <span id="room_private" style="display: none;">This room is private.</span> <span id="room_owner" style="display: none;"><br>You are the owner of this room.</span> </div> <canvas id="bonzi_canvas" width="1381" height="888"></canvas>  <div id="main"></div>  <table id="chat_bar"><tbody><tr> <td id="chat_send">send</td> <td id="chat_message_cont"><input id="chat_message" type="text" placeholder="Enter a message"></td> <td id="chat_tray"> <div id="btn_tile" class="tray_btn"></div> </td> </tr></tbody></table> <div id="page_login" class="page" style="display: none;"> <div id="login_apps"><a href="https://steamcommunity.com/groups/SEAMSERVER"><img src="./BonziWORLD_ Revived_files/seamus-server-badge.png" alt="Join our steam group."></a> <a href="https://discord.gg/VGGMhB5"><img src="./BonziWORLD_ Revived_files/google-play-badge.png" alt="Join our discord server."></a><a href="http://google.com/"><img src="./BonziWORLD_ Revived_files/soon-to-be-on-chrome.png" alt="Soon to be available on chrome as a app."></a></div><br><br><br><br><br><br><div id="login_readme" style="text-align: center;"><img alt="KiddieIcon.png" src="./BonziWORLD_ Revived_files/Kiddie.png" decoding="async" width="32" height="32"><br>THIS SITE CONTAINS KIDDIES, IT IS AN WORST IDEA TO JOIN IN! <br> To understand the ongoing bans, please click this <a href="https://docs.google.com/document/d/1Aroqp-oe-O4u0YzaiPPjDIQppHnzESQGSEZW8GM6sXc/edit?usp=sharing">link.</a> <br>Make sure you read the <a href="http://localhost:3000/readme.html" target="_blank">README</a> and <a href="http://localhost:3000/rules.html" target="_blank">RULES</a> before use. <br>Contact us <a href="http://localhost:3000/contact.html">here.</a> <br> Copyright Notices is in <a href="http://localhost:3000/attention_server_owners.html">here</a><br>Users under the age of 13 will be <b>PERMAMENTLY BANNED</b> to protect their privacy.</div> <div id="login_load" style="display: none;">loading</div> <div id="login_version">Version 2.0.0B(Beta)</div> <div id="login_social"><a href="https://twitter.com/BonziWRevived" target="_blank" style="margin-right: 10px;" class="fa fa-twitter" aria-hidden="true" width="64"></a></div> <div id="login_card" style=""> <input id="login_name" type="text" placeholder="Nickname"> <input id="login_room" type="text" placeholder="Room ID (Optional!)"> <button onclick="login()" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;"><div id="login_go"></div></button> <br> <br> <br> <br> <br> <div id="login_error" style="display:none"></div><br> </div> </div> 
+			<div id="bonzi_f9576012301753f4" class="bonzi" style="margin-left: 507.073px; margin-top: 496.4px;">
+				<div class="bonzi_name">Seamus</div>
+					<div class="bonzi_placeholder" style="width: 200px; height: 160px;"></div>
+				<div style="display: block;" class="bubble bubble-right">
+					<p class="bubble-content" style="display: block;"> <video width="170" height="170" loop="" controls="" autoplay=""><source src="https://cdn.discordapp.com/attachments/385513442104049666/632440076772704268/video0.mp4" type="video/mp4" loop="">Your browser does not support the video tag.</video> </p>
+				</div>
+			</div>
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			<div id="bonzi_f1283d2891557b5f" class="bonzi" style="margin-left: 105.348px; margin-top: 200.967px;">
+				<div class="bonzi_name">Is my party here?</div>
+					<div class="bonzi_placeholder" style="width: 200px; height: 160px;"></div>
+				<div style="display: none;" class="bubble bubble-right">
+					<p class="bubble-content" style="display: block;"></p>
+				</div>
+			</div>
+		
+			
+		
+			
+		
+			
+		
+			<div id="bonzi_74005656d9e3c101" class="bonzi" style="margin-left: 94.919px; margin-top: 444.771px;">
+				<div class="bonzi_name">Olaf Kowalski</div>
+					<div class="bonzi_placeholder" style="width: 200px; height: 160px;"></div>
+				<div style="display: none;" class="bubble bubble-right">
+					<p class="bubble-content" style="display: block;"></p>
+				</div>
+			</div>
+		
+			<div id="bonzi_146119ecf67c63c2" class="bonzi" style="margin-left: 1005.91px; margin-top: 164.665px;">
+				<div class="bonzi_name">Diogo</div>
+					<div class="bonzi_placeholder" style="width: 200px; height: 160px;"></div>
+				<div style="display: none;" class="bubble bubble-left">
+					<p class="bubble-content" style="display: block;"></p>
+				</div>
+			</div>
+		
+			
+		
+			<div id="bonzi_d422b0c18e40f539" class="bonzi" style="margin-left: 913.558px; margin-top: 695.25px;">
+				<div class="bonzi_name">yeeeeeeeee</div>
+					<div class="bonzi_placeholder" style="width: 200px; height: 160px;"></div>
+				<div style="display: none;" class="bubble bubble-left">
+					<p class="bubble-content" style="display: block;"></p>
+				</div>
+			</div>
+		
+			<div id="bonzi_3e7722ace2aac287" class="bonzi" style="margin-left: 374.939px; margin-top: 173.477px;">
+				<div class="bonzi_name">defaultuser0</div>
+					<div class="bonzi_placeholder" style="width: 200px; height: 160px;"></div>
+				<div style="display: none;" class="bubble bubble-right">
+					<p class="bubble-content" style="display: block;"></p>
+				</div>
+			</div>
+		</div> <div id="page_error" class="page" style="display:none"> <div id="error_cont" class="message_cont"> <img src="./BonziWORLD_ Revived_files/logo.png"><br> <br> <h1>BonziWORLD.exe has encountered an error and needs to close.</h1><br> Nah, but seriously there was an error and you got disconnected from the server. Chances are, your internet just died out for a brief moment or your device went to sleep. Otherwise the server just screwed up.<br> <br> Try and reload the page. If that doesn't work and your internet is okay, then panic. We'll probably be back up Soon™ though.<br> <br> The server probably restarted. If it crashed, please mention Seamusmario in our discord server. © Seamus's Server - All rights reserved <br> <a href="http://localhost:3000/#" onclick="window.location.reload()">Reload?</a><br> <br> Room ID - <span class="room_id">b904b4f5dce856f0</span><br> </div> </div> <div id="page_jserror" class="page" style="display:none"> <div id="error_cont2" class="message_cont"> <img src="./BonziWORLD_ Revived_files/logo(1).png"><br> <br> <h1>Unexpected Error</h1><br>Inspect Element is disabled.<br> © Seamus's Server - All rights reserved <br> <a href="http://localhost:3000/#" onclick="window.location.reload()">Reload?</a><br> <br> Room ID - <span class="room_id">b904b4f5dce856f0</span><br> </div> </div><div id="page_warning" class="page" style="display:none"> <div id="warning_cont" class="message_cont"> <img src="./BonziWORLD_ Revived_files/logo(1).png"><br> <br> <h1>Warning</h1><br> <br> <b>Why did i get warned? </b><span id="warning_reason"></span></div> </div> <div id="page_mute" class="page" style="display:none"> <div id="mute_cont" class="message_cont"> <img src="./BonziWORLD_ Revived_files/logo(1).png"><br> <br> <h1>You got muted!</h1><br> <br> <b>Why? </b><span id="mute_reason"></span><br> <b>When is it over? </b><span id="mute_end"></span> </div> </div> <div id="page_ban" class="page" style="display:none"> <div id="ban_cont" class="message_cont"> <img src="./BonziWORLD_ Revived_files/logo(1).png"><br> <br> <h1>You got banned!</h1><br> <br> <b>Why? </b><span id="ban_reason"></span><br> <b>When is it over? </b><span id="ban_end"></span><br> </div> </div> <div class="win2000_base" id="evaljs" style="display: none;"><div class="win2000_titlebar">Server-side JavaScript Console<button class="win2000_button" style="float: right; font-size: x-small; padding-left: 2px; padding-right: 2px;" onclick="close_evaljs()">x</button></div><div class="win2000_body" style="padding: 2px;">If it doesn't work, try enabling godmode<pre id="evaljs_console" class="win2000_textbox">BonziWORLD Server-side JavaScript Console(TM) 2019</pre><input class="win2000_textbox" style="width: 75%" id="evaljs_codebox"><button class="win2000_button" onclick="execute()">Execute</button></div></div> <div id="page_banmenu" class="page" style="display:none"> <div id="ban_cont" class="message_cont"> <br> <br> <h1>Ban a user</h1><br> <br> <b>Why? </b><span>Custom</span><br><input type="text" id="banmenu_reason"><br> <b>Who? (IP Only for now)</b><br><input type="text" id="banmenu_ip"><br><br><b>When is it over? </b><input type="text" id="banmenu_end"><br> <button onclick="ban()">Ban</button> </div> </div> <div id="page_kick" class="page" style="display:none"> <div id="kick_cont" class="message_cont"> <img src="./BonziWORLD_ Revived_files/logo(1).png"><br> <br> <h1>You got kicked!</h1><br> <br> <b>Why? </b><span id="kick_reason"></span><br> </div> </div> <div id="page_unsupp" class="page" style="display:none"> <div id="unsupp_cont" class="message_cont"> <img src="./BonziWORLD_ Revived_files/logo.png"><br> <br> <h1>BonziWORLD cannot run on this platform.</h1><br> Unfortunately, BonziWORLD cannot run in this browser for the following reasons:<br> <ul id="unsupp_reasons"></ul> You can try to download a BonziWORLD app that works on your device, or update your browser. <div id="login_apps"> </div> </div> </div>  <div id="titlebar"> <div id="minimize"></div> <div id="maximize"></div> <div id="close"></div> </div> 
+<script src="./BonziWORLD_ Revived_files/midi.js.download"></script>
+
+<script src="./BonziWORLD_ Revived_files/codef_core.js.download"></script>
+<script src="./BonziWORLD_ Revived_files/codef_starfield.js.download"></script>
+<script src="./BonziWORLD_ Revived_files/codef_gradient.js.download"></script>
+<script src="./BonziWORLD_ Revived_files/codef_scrolltext.js.download"></script>
+<script src="./BonziWORLD_ Revived_files/codef_fx.js.download"></script>
+<script src="./BonziWORLD_ Revived_files/codef_3d.js.download"></script>
+<script src="./BonziWORLD_ Revived_files/howler.min.js.download"></script>
+
+<script>
+
+
+
+var mycanvas;
+var my2dstarfield;
+var my2dstarsparams=[
+		{nb:30, speedy:2, speedx:-1, params:0},
+		{nb:30, speedy:0.8, speedx:0.8, params:1},
+		{nb:30, speedy:0.6, speedx:0.6, params:2},
+              ];
+
+var bubble = new Array();
+//bubble[0]=new image('data/zip.gif');
+bubble[0]=new image('/dangerous/ban.png');
+bubble[1]=new image('/dangerous/groomed_rainbow.png');
+bubble[2]=new image('/dangerous/error.png');
+// not dangerous 
+//bubble[3]=new image('/dangerous/slimey.png');
+
+var mygrad;
+var mygradcolor=
+	[
+	{color: 'rgb(128,0,128)' ,  offset:0},
+	{color: 'rgb(255,20,147)', offset:0.25},
+	{color: 'rgb(128,0,128)' ,  offset:0.5},
+	{color: 'rgb(255,20,147)', offset:0.75},
+	{color: 'rgb(128,0,128)' ,  offset:1}
+
+	];
+
+var myfont = new image('img/font.png');
+var mycanvas;
+var myscrolltext;
+
+
+var myscrollparam=[
+                   {myvalue: 0, amp: 125, inc:0.2, offset: -0.04},
+                  ];
+
+
+var myimage = new image('/img/desktop/bg_acid.png');
+var mycanvas;
+var myoffscreencanvas;
+var myfx;
+var myfxparam=[
+		{value: 0, amp: 30, inc:0.03, offset: -0.05},
+		{value: 0, amp: 30, inc:0.01, offset:  0.08}
+	      ];
+
+
+var my3d;
+
+var myobj = new Array();
+var myobjvert = new Array();
+myobjvert=[
+        {x:-300, y:0, z: 300},
+        {x: 300, y:0, z: 300},
+        {x: 300, y:0, z: -300},
+        {x:-300, y:0, z: -300},
+        {x:0, y: 400, z: 0},
+        {x:0, y:-400, z: 0},
+       ];
+
+myobj=[
+        {p1:1, p2:4, p3:0, params:new MeshBasicMaterial({ color: 0x00FFFF, opacity:0.7})},
+        {p1:2, p2:4, p3:1, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:3, p2:4, p3:2, params:new MeshBasicMaterial({ color: 0xFF00FF, opacity:0.7})},
+        {p1:0, p2:4, p3:3, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:0, p2:5, p3:1, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:1, p2:5, p3:2, params:new MeshBasicMaterial({ color: 0x00FFFF, opacity:0.7})},
+        {p1:2, p2:5, p3:3, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:3, p2:5, p3:0, params:new MeshBasicMaterial({ color: 0xFF00FF, opacity:0.7})},
+      ];
+
+
+
+
+
+function init(){
+
+	window.addEventListener('resize', onWindowResize, false);
+
+	mycanvas=new canvas(window.innerWidth,window.innerHeight,"main");
+	my2dstarfield=new starfield2D_img(mycanvas,bubble,my2dstarsparams);
+	mygrad=new grad(mycanvas,mygradcolor);
+
+
+	myfont.initTile(32,32,32);
+	myscrolltext = new scrolltext_horizontal();
+	myscrolltext.scrtxt="HELLO AND WELCOME TO        BONZIWORLD ACID MODE        UNEXPECTEDLY HAS DANGEROUS IMAGES :(               WATCH OUT, THEY ARE EXTREMELY DANGEROUS.                           ";
+	myscrolltext.init(mycanvas,myfont,1,myscrollparam);
+
+	myoffscreencanvas=new canvas(208,170);
+	myimage.draw(myoffscreencanvas,0,0);
+	myfx=new FX(myoffscreencanvas,mycanvas,myfxparam);
+
+	my3d=new codef3D(mycanvas, 900, 40, 1, 1600 );
+	my3d.faces(myobjvert,myobj, true, false );
+
+
+	//sound
+
+    //
+
+    var invisiblepink = new Audio('http://www.windows93.net/c/programs/acidBox93/data/DJ_Invisible_Pink_-_Live_Acid_at_Databit.ogg');
+	invisiblepink.playbackRate = 1.0;
+    invisiblepink.play();
+	invisiblepink.volume = 1;
+	invisiblepink.loop = true
+	go();
+}
+
+function go(){
+
+
+
+
+
+	//mycanvas.fill('#000000');
+	mygrad.drawV();
+
+
+	my3d.group.rotation.x+=0.01;
+	my3d.group.rotation.y+=0.02;
+	my3d.group.rotation.z+=0.04;
+	my3d.draw();
+
+
+	my2dstarfield.draw();
+
+
+
+
+
+
+	myfx.siny(window.innerWidth/2-104,window.innerHeight/2-85);
+
+	myscrolltext.draw(240-16);
+
+	requestAnimFrame( go );
+}
+
+
+function onWindowResize() {
+
+  console.log(mycanvas);
+  //console.log('??');
+  mycanvas.canvas.width=window.innerWidth;
+  mycanvas.canvas.height=window.innerHeight;
+	mycanvas.canvas.style.width=window.innerWidth + 'px';
+	mycanvas.canvas.style.height=window.innerHeight + 'px';
+
+  //console.log('resize');
+
+  //document.location.reload(true);
+}
+
+</script>
+
+  </body></html>

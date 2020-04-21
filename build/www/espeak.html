@@ -1,0 +1,173 @@
+<!DOCTYPE html> <html> <head> <title>BonziWORLD Revived</title> <meta charset="utf-8"> <meta content=""> 	<script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script> <script src="https://www.google.com/recaptcha/api.js"></script><script src="./js/lib/clippy.min.js"></script> <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <meta name="mobile-web-app-capable" content="yes"> <link rel="stylesheet" type="text/css" href="./css/style.min.css"><link rel="stylesheet" type="text/css" href="./css/clippy.css" media="all"> <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png"> <link rel="icon" type="image/png" href="./favicons/favicon-32x32.png" sizes="32x32"> <link rel="icon" type="image/png" href="./favicons/favicon-16x16.png" sizes="16x16"> <link rel="manifest" href="./favicons/manifest.json"> <link rel="mask-icon" href="./favicons/safari-pinned-tab.svg" color="#5bbad5"> <link rel="shortcut icon" href="./favicons/favicon.ico"> <meta name="msapplication-config" content="./favicons/browserconfig.xml"> <meta name="theme-color" content="#8b5adc"> <script src="./js/lib/easeljs.min.js"></script> <script src="./js/lib/preloadjs-0.6.2.min.js"></script> <script src="./js/lib/jquery.min.js"></script><script type = "text/javascript"           src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">       </script> <script src="./js/lib/seedrandom.min.js"></script> <script src="./js/lib/socket.io-1.4.5.js"></script> <script src="./js/lib/speakjs/speakClient.js"></script> <script src="./mespeak/mespeak.js"></script> <script src="./js/lib/autostartjs"></script> <script src="./js/lib/jquery.contextMenu.min.js"></script><script src="./cordova.js"></script> <script src="./js/platform.js"></script> <link rel="stylesheet" type="text/css" href="./css/platform.css"> <script src="./js/script.min.espeak.js"></script> <script src="./js/warning.js"></script> <script src="./js/css.js"></script>  <script src="./js/ban.js"></script> </head> <body> <!-- Stop looking for our secrets! Don't reveal to anybody! If you show our users our secrets, then we will be all dooomed!!! --><audio id="error" src="error.ogg"></audio> <div id="content"><div id="news"></div> <div id="room_info"> Room ID: <span id="room_id">???</span><br> <span id="room_public">This room is public.</span> <span id="room_private">This room is private.</span> <span id="room_owner"><br>You are the owner of this room.</span> <br> <big><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">Keep yourself safe and informed</a></big> </div> <canvas id="bonzi_canvas" width="100" height="100"></canvas>   <div id="main"></div>  <table id="chat_bar"><tr> <td id="chat_send">send</td> <td id="chat_message_cont"><input id="chat_message" type="text" placeholder="Enter a message"></td> <td id="chat_tray"> <div id="btn_tile" class="tray_btn"></div> </td> </tr></table> <div id="page_login" class="page"> <div id="login_apps"></a></div><br><br><br><br><br><br><div id="login_readme"><font face="Verdana, Arial, Helvetica" size="2">You are in the legacy version. ESpeak is enabled in this version. This won't be updated as much as non-legacy version does.</font><h1><br><h3><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">Keep yourself safe and informed</a></h3><a href="/msagents/home.html">Microsoft Agent Home</a><br><a href="https://discord.gg/eR8wmBs"><video width="32" loop="" autoplay=""><source src="https://discordapp.com/assets/0bdc0497eb3a19e66f2b1e3d5741634c.webm" type="video/mp4" loop="">Your browser does not support the video tag.</video></a></div> <div id="login_load">welcome</div> <div id="login_version">Version 2.0.2_01</div>  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <div id="login_social"><a href="https://www.youtube.com/channel/UCAuQXHCXS0mAKb8gXHvjnEg" class="fa fa-youtube"></a><a href="https://github.com/Seamusmario/BonziWORLD-Revived" class="fa fa-github"></a><a href="https://twitter.com/bonziwrevived" class="fa fa-twitter"></a></div> <div id="login_card" style="display:none"> <input id="login_name" type="text" placeholder="Nickname"> <input id="login_room" type="text" placeholder="Room ID (Optional!)"> <button onclick="login()" style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;"><div id="login_go"></div></button> <br> <br> <br> <br> <br> <div id="login_error" style="display:none"></div><br/> </div> </div> </div> <div id="page_error" class="page" style="display:none"> <div id="error_cont" class="message_cont"> <img src="./img/error/logo.png"><br> <br> <h1>BonziWORLD.exe has encountered an error and needs to close.</h1><br> Nah, but seriously there was an error and you got disconnected from the server. Chances are, your internet just died out for a brief moment or your device went to sleep. Otherwise the server just screwed up.<br> <br> Try and reload the page. If that doesn't work and your internet is okay, then panic. We'll probably be back up Soon&trade; though.<br> <br> The server probably restarted. If it crashed, please mention Seamusmario in our discord server. &copy; Seamus's Server - All rights reserved <br> <a href="#" onclick="window.location.reload()">Reload?</a><br> <br> Room ID: <span id="room_id">???</span><br> </div> </div> <div id="page_jserror" class="page" style="display:none"> <div id="error_cont2" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>Unexpected Error</h1><br>Inspect Element is disabled.<br> &copy; Seamus's Server - All rights reserved <br> <a href="#" onclick="window.location.reload()">Reload?</a><br> <br> Room ID - <span class="room_id">???</span><br> </div> </div><div id="page_warning" class="page" style="display:none"> <div id="warning_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>Warning</h1><br> <br> <b>Why did i get warned? </b><span id="warning_reason"></span><br><br><button onclick='hidewarning()'>Hide</button></div> </div> <div id="page_achieve" class="page" style="display:none"> <div id="achieve_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>You've Received Admin!</h1><br> <br> <b>Why did i get admin? </b><span id="achieve_reason"></span><br><br>If you did not  get admin, reload the page.<br><br><button onclick='hideadmin()'>Hide</button></div> </div> <div id="page_ban" class="page" style="display:none"> <div id="ban_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>You got banned!</h1><br> <br> <b>Why? </b><span id="ban_reason"></span><br> <b>When is it over? </b><span id="ban_end"></span><br> </div> </div> <div class="win2000_base" id="evaljs" style="display: none;"><div class="win2000_titlebar">Server-side JavaScript Console<button class="win2000_button" style="float: right; font-size: x-small; padding-left: 2px; padding-right: 2px;" onclick="close_evaljs()">x</button></div><div class="win2000_body" style="padding: 2px;">If it doesn't work, try enabling godmode<pre id="evaljs_console" class="win2000_textbox">BonziWORLD Server-side JavaScript Console(TM) 2019</pre><input class="win2000_textbox" style="width: 75%" id="evaljs_codebox"></input><button class="win2000_button" onclick="execute()">Execute</button></div></div> <div id="page_banmenu" class="page" style="display:none"> <div id="ban_cont" class="message_cont"> <br> <br> <h1>Ban a user</h1><br> <br> <b>Why? </b><span>Custom</span><br><input type="text" id="banmenu_reason"><br> <b>Who? (IP Only for now)</b><br><input type="text" id="banmenu_ip"></br><br><b>When is it over? </b><input type="text" id="banmenu_end"></span><br> <button onclick='ban()'>Ban</button> </div> </div> <div id="page_kick" class="page" style="display:none"> <div id="kick_cont" class="message_cont"> <img src="./img/ban/logo.png"><br> <br> <h1>You got kicked!</h1><br> <br> <b>Why? </b><span id="kick_reason"></span><br> </div> </div> <div id="page_unsupp" class="page" style="display:none"> <div id="unsupp_cont" class="message_cont"> <img src="./img/error/logo.png"><br> <br> <h1>BonziWORLD cannot run on this platform.</h1><br> Unfortunately, BonziWORLD cannot run in this browser for the following reasons:<br> <ul id="unsupp_reasons"></ul> You can try to download a BonziWORLD app that works on your device, or update your browser. <div id="login_apps"> </div> </div> </div> </div> <div id="titlebar"> <div id="minimize"></div> <div id="maximize"></div> <div id="close"></div> </div> 
+<script src='/js/midi.js'></script>
+
+<script src="http://www.windows93.net/c/libs/codef/codef_core.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_starfield.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_gradient.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_scrolltext.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_fx.js"></script>
+<script src="http://www.windows93.net/c/libs/codef/codef_3d.js"></script>
+<script src="http://www.windows93.net/c/libs/howler.min.js"></script>
+
+<script>
+
+
+
+
+var mycanvas;
+var my2dstarfield;
+var my2dstarsparams=[
+		{nb:30, speedy:2, speedx:-1, params:0},
+		{nb:30, speedy:0.8, speedx:0.8, params:1},
+		{nb:30, speedy:0.6, speedx:0.6, params:2},
+              ];
+
+var bubble = new Array();
+//bubble[0]=new image('data/zip.gif');
+bubble[0]=new image('/dangerous/ban.png');
+bubble[1]=new image('/dangerous/groomed_rainbow.png');
+bubble[2]=new image('/dangerous/error.png');
+// not dangerous 
+//bubble[3]=new image('/dangerous/slimey.png');
+
+var mygrad;
+var mygradcolor=
+	[
+	{color: 'rgb(128,0,128)' ,  offset:0},
+	{color: 'rgb(255,20,147)', offset:0.25},
+	{color: 'rgb(128,0,128)' ,  offset:0.5},
+	{color: 'rgb(255,20,147)', offset:0.75},
+	{color: 'rgb(128,0,128)' ,  offset:1}
+
+	];
+
+var myfont = new image('img/font.png');
+var mycanvas;
+var myscrolltext;
+
+
+var myscrollparam=[
+                   {myvalue: 0, amp: 125, inc:0.2, offset: -0.04},
+                  ];
+
+
+var myimage = new image('/img/desktop/bg_acid.png');
+var mycanvas;
+var myoffscreencanvas;
+var myfx;
+var myfxparam=[
+		{value: 0, amp: 30, inc:0.03, offset: -0.05},
+		{value: 0, amp: 30, inc:0.01, offset:  0.08}
+	      ];
+
+
+var my3d;
+
+var myobj = new Array();
+var myobjvert = new Array();
+myobjvert=[
+        {x:-300, y:0, z: 300},
+        {x: 300, y:0, z: 300},
+        {x: 300, y:0, z: -300},
+        {x:-300, y:0, z: -300},
+        {x:0, y: 400, z: 0},
+        {x:0, y:-400, z: 0},
+       ];
+
+myobj=[
+        {p1:1, p2:4, p3:0, params:new MeshBasicMaterial({ color: 0x00FFFF, opacity:0.7})},
+        {p1:2, p2:4, p3:1, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:3, p2:4, p3:2, params:new MeshBasicMaterial({ color: 0xFF00FF, opacity:0.7})},
+        {p1:0, p2:4, p3:3, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:0, p2:5, p3:1, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:1, p2:5, p3:2, params:new MeshBasicMaterial({ color: 0x00FFFF, opacity:0.7})},
+        {p1:2, p2:5, p3:3, params:new MeshBasicMaterial({ color: 0xeeeeee, opacity:0.7})},
+        {p1:3, p2:5, p3:0, params:new MeshBasicMaterial({ color: 0xFF00FF, opacity:0.7})},
+      ];
+
+
+
+
+
+function init(){
+
+	window.addEventListener('resize', onWindowResize, false);
+
+	mycanvas=new canvas(window.innerWidth,window.innerHeight,"main");
+	my2dstarfield=new starfield2D_img(mycanvas,bubble,my2dstarsparams);
+	mygrad=new grad(mycanvas,mygradcolor);
+
+
+	myfont.initTile(32,32,32);
+	myscrolltext = new scrolltext_horizontal();
+	myscrolltext.scrtxt="HELLO AND WELCOME TO        BONZIWORLD ACID MODE        UNEXPECTEDLY HAS DANGEROUS IMAGES :(               WATCH OUT, THEY ARE EXTREMELY DANGEROUS.                           ";
+	myscrolltext.init(mycanvas,myfont,1,myscrollparam);
+
+	myoffscreencanvas=new canvas(208,170);
+	myimage.draw(myoffscreencanvas,0,0);
+	myfx=new FX(myoffscreencanvas,mycanvas,myfxparam);
+
+	my3d=new codef3D(mycanvas, 900, 40, 1, 1600 );
+	my3d.faces(myobjvert,myobj, true, false );
+
+
+	//sound
+
+    //
+
+    var invisiblepink = new Audio('http://www.windows93.net/c/programs/acidBox93/data/DJ_Invisible_Pink_-_Live_Acid_at_Databit.ogg');
+	invisiblepink.playbackRate = 1.0;
+    invisiblepink.play();
+	invisiblepink.volume = 1;
+	invisiblepink.loop = true
+	go();
+}
+
+function go(){
+
+
+
+
+
+	//mycanvas.fill('#000000');
+	mygrad.drawV();
+
+
+	my3d.group.rotation.x+=0.01;
+	my3d.group.rotation.y+=0.02;
+	my3d.group.rotation.z+=0.04;
+	my3d.draw();
+
+
+	my2dstarfield.draw();
+
+
+
+
+
+
+	myfx.siny(window.innerWidth/2-104,window.innerHeight/2-85);
+
+	myscrolltext.draw(240-16);
+
+	requestAnimFrame( go );
+}
+
+
+function onWindowResize() {
+
+  console.log(mycanvas);
+  //console.log('??');
+  mycanvas.canvas.width=window.innerWidth;
+  mycanvas.canvas.height=window.innerHeight;
+	mycanvas.canvas.style.width=window.innerWidth + 'px';
+	mycanvas.canvas.style.height=window.innerHeight + 'px';
+
+  //console.log('resize');
+
+  //document.location.reload(true);
+}
+
+</script>
+
+</head> </body> </html>
