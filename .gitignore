@@ -72,5 +72,6 @@ ehthumbs.db
 Thumbs.db
 
 # Private files
+src/**
 src/cordova/signing/**
 src/cordova/build.json

@@ -1,0 +1,64 @@
+[MASH Script]
+Version=7.5
+
+[Characters]
+Merlin=Merlin.acs
+
+[LanguageIDs]
+Merlin=&H409
+
+[Script]
+Merlin.MoveTo 1782, 884
+Merlin.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273002}"
+Merlin.Show
+Merlin.Play "Announce"
+Merlin.Speak "Welcome to the Speech Recognition System, from Seamus's Server."
+Merlin.Play "RestPose"
+Merlin.Speak "Powered by Microsoft Agent Scripting Helper. To help Microsoft Agent recognize your voice, you will need a Microphone, A Speech Recognition System downloaded from our Microsoft Agent website, and Speech API."
+Merlin.Play "Write"
+Merlin.Speak "If you have completed Speech Recognition training, or you have setted up your binded key for talking to the Agent, You may now do your speech by pressing your binded speech key, shown in the Advanced Character Options, and such others."
+Merlin.Play "WriteContinued"
+Merlin.Speak "There is also other agents known as Genie, Peedy, and Robby.  Bonzi is currently doing his own thing, watching tv, and eating bananas. We will not add him to the list of speech agents. Because we need to respect his Privacy."
+Merlin.Speak "Although you can call Bonzi, you may interrupt his actions."
+Merlin.Play "WriteReturn"
+Merlin.Play "Wave"
+Merlin.Speak "I hope to see you soon, fellow User."
+Set Req = Merlin.Hide()
+WaitFor Req
+Genie.MoveTo 1782, 884
+Genie.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273000}"
+Peedy.MoveTo 1782, 884
+Peedy.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
+Robby.MoveTo 1782, 884
+Robby.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273006}"
+Genie.Hide
+Peedy.Hide
+Robby.Hide
+Rover.MoveTo 1782, 884
+Rover.Hide
+Bonzi.MoveTo 1782, 884
+Bonzi.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
+Bonzi.Hide
+
+[Commands]
+MenuName=MASH Menu
+CONTROL=Open Control Panel|~|[Open] Control Panel
+MYCOMPUTER=My Computer|~|[Open] My Computer
+SPEECHCP=Speech Control Panel|~|[Open] Speech Control Panel
+NOTEPAD=Run Notepad|~|[Please] [(Open|Run|Start|Launch)] Notepad [Please]
+CHROME=Run Google Chrome|~|[Please] [(Open|Run|Start|Launch)] Google Chrome [Please]
+
+[CommandScript:CONTROL]
+ShellEx "CONTROL.EXE"
+
+[CommandScript:MYCOMPUTER]
+ShellEx "Explorer.exe ::{20d04fe0-3aea-1069-a2d8-08002b30309d}"
+
+[CommandScript:SPEECHCP]
+ShellEx "rundll32.exe shell32.dll,Control_RunDLL speech.cpl,,1"
+
+[CommandScript:NOTEPAD]
+ShellEx "NOTEPAD.EXE"
+
+[CommandScript:CHROME]
+ShellEx "CHROME.EXE"

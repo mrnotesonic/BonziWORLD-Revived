@@ -1,0 +1,1528 @@
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app31.us.archive.org';v.server_ms=1800;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/ait-client-rewrite.js" charset="utf-8"></script>
+<script type="text/javascript">
+WB_wombat_Init("https://web.archive.org/web/", "20050205100824", "agent.microsoft.com:80");
+</script>
+<script type="text/javascript" src="/_static/js/wbhack.js" charset="utf-8"></script>
+<script type="text/javascript">
+__wbhack.init('https://web.archive.org/web');
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css" /><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="KEYWORDS" content="try test sample HTML Web page code">
+<meta name="DESCRIPTION" content="Simple test page to try Microsoft Agent and verify components are working successfully.">
+<meta name="MS.LOCALE" content="EN-US"><link rel="apple-touch-icon" sizes="72x72" href="/msagents/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/msagents/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/msagents/favicon-16x16.png">
+<link rel="manifest" href="/msagents/site.webmanifest">
+<link rel="mask-icon" href="/msagents/afari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta http-equiv="X-UA-Compatible" content="IE=5">
+<!-- End Wayback Rewrite JS Include -->
+
+<title>Peedy's Pizza Palace</title>
+</head>
+<body bgproperties="fixed">
+<font face="Comic Sans MS" size="1" color="NAVY">
+<center>
+   <font size="5">Peedy's Pizza Palace<p>
+   <img src="http://web.archive.org/web/20050205100824im_/http://agent.microsoft.com/agent2/sdk/samples/html/THEPIZZA.GIF" align="MIDDLE" width="200" height="50">
+</center>
+</font>
+
+<object width="0" height="0" classid="clsid:D45FD31B-5C6E-11D1-9EC1-00C04FD7081F" id="AgentCtl">
+</object>
+
+<object width="0" height="0" classid="clsid:B8F2846E-CE36-11D0-AC83-00C04FD97575" id="L&amp;HTruVoiceDownload">
+</object>
+
+<object width="0" height="0" classid="CLSID:161FA781-A52C-11d0-8D7C-00A0C9034A7E" codebase="http://web.archive.org/web/20050205100824oe_/http://agent.microsoft.com/agent2/sdk/samples/html/Bonzipza.htm#VERSION=4,0,0,0">
+ id = MicrosoftSpeechRecognitionDownload&gt;
+</object>
+
+<script language="VBScript">
+<!--
+
+'	Copyright (c) 1998 by Microsoft Corporation
+'
+'	THE INFORMATION AND CODE PROVIDED HEREUNDER (COLLECTIVELY REFERRED TO
+'	AS "SOFTWARE") IS PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND, EITHER
+'	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+'	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IN
+'	NO EVENT SHALL MICROSOFT CORPORATION OR ITS SUPPLIERS BE LIABLE FOR
+'	ANY DAMAGES WHATSOEVER INCLUDING DIRECT, INDIRECT, INCIDENTAL,
+'	CONSEQUENTIAL, LOSS OF BUSINESS PROFITS OR SPECIAL DAMAGES, EVEN IF
+'	MICROSOFT CORPORATION OR ITS SUPPLIERS HAVE BEEN ADVISED OF THE
+'	POSSIBILITY OF SUCH DAMAGES. SOME STATES DO NOT ALLOW THE EXCLUSION OR
+'	LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES SO THE
+'	FOREGOING LIMITATION MAY NOT APPLY.
+'
+'	This software may be copied and distributed royalty-free subject to
+'	the following conditions:
+'
+'	1. You must copy all software without modification and must include
+'	   all pages, if the software is distributed without inclusion in your
+'	   software product. If you are incorporating the software in
+'	   conjunction with and as a part of your software product which adds
+'	   substantial value, you may modify and include portions of the
+'	   software.
+'
+'	2. You must place all copyright notices and other protective
+'	   disclaimers and notices contained on the software on all copies of
+'	   the software and your software product.
+'
+'	3. Unless the software is incorporated in your software product which
+'	   adds substantial value, you may not distribute this software for
+'	   profit.
+'
+'	4. You may not use Microsoft's name, logo, or trademarks to market
+'	   your software product.
+'
+'	5. You agree to indemnify, hold harmless, and defend Microsoft and its
+'	   suppliers from and against any claims or lawsuits, including
+'	   attorneys' fees, that arise or result from the use or distribution
+'	   of your software product and any modifications to the software.		
+
+Dim Bonzi
+Dim LoadRequest
+Dim SpeechInputRequest
+Dim SpeakingDoneRequest
+Dim ListenOK
+Dim StatusRequest
+Dim HeardWhat
+Dim HeardSomething
+Dim AddRequest
+Dim IsListening
+Dim NoInput
+Dim OrderType
+Dim CurrentStyle
+Dim RecogError 
+Dim ChosenBySpeech
+
+'-------------------------------------------------
+'-- window_OnLoad
+'--
+'-- This event gets fired when the page is loaded.
+'--
+'-------------------------------------------------
+
+Sub Window_OnLoad
+
+ClearRadioButtons
+
+AgentCtl.Connected = True	' for IE3
+On Error Resume Next
+
+'-- Load the character from the \msagent\chars subdirectory
+Set LoadRequest = AgentCtl.Characters.Load ("char1", "Bonzi.acs")
+
+'-- If the character wasn't found, put up a message
+If LoadRequest.Status = 1 Then
+	Msgbox "You don't have Bonzi stored in the \chars directory."+chr(13)+"You can download him from the Microsoft Agent Downloads page."
+End If
+
+'-- Set an object variable to the character 
+'-- loaded into the collection
+Set Bonzi = AgentCtl.Characters ("char1")
+
+'-- Set the character's language to English
+Bonzi.LanguageID = &H0409 
+Bonzi.SRModeID = &H0409 
+
+'-- Now check for it
+If Bonzi.SRModeID = "" Then
+	Msgbox "Either you have disabled speech input," + Chr(13)+ "- you don't have a compatible sound card," + Chr(13) + "- or you haven't installed a compatible speech recognition engine ." + Chr(13) + "(You can download it from the Microsoft Agent Downloads page.)"	
+End If
+
+'-- Check for the TTS engine engine
+If Bonzi.TTSModeId = "" Then
+	Msgbox "Either you have disabled speech output," + Chr(13) + "- you don't have a compatible sound card," + Chr(13) + "- or you haven't installed a compatible text-to-speech engine." + Chr(13) + "(You can download it from the Microsoft Agent Downloads page.)"
+End If
+
+'-- Add page's entry on to the character's pop-up menu
+'-- to enable switching back to this client's (page's) script
+'-- (this will only be seen if another client becomes input active)
+Bonzi.Commands.Caption = "Bonzi's Pizza Palace"
+Bonzi.Commands.Voice = "Bonzi's Pizza Palace"
+
+'-- Initialize the voice grammar for the demo
+InitializeCommands
+
+'-- Start Bonzi's Intro
+DoIntro
+
+End Sub
+
+
+Sub DoIntro
+'------------------------------------------
+'-- Introduce Bonzi
+'------------------------------------------
+
+'-- Move the character and make it visible
+Bonzi.MoveTo 20,90
+Bonzi.Show
+	
+'-- And play an intro animations
+Bonzi.Play "GestureLeft"
+Bonzi.Speak "Welcome to Bonzi's Pizza Palace."
+Bonzi.Play "Greet"
+Bonzi.Speak "I am Bonzi."
+Bonzi.Play "Restpose"
+Set SpeakingDoneRequest = Bonzi.Speak ("Your online pizza ordering assistant.")
+
+End Sub
+
+
+Sub DoInstructions
+'--------------------------------------------------
+'-- Have Bonzi provide pizza ordering instructions
+'--------------------------------------------------
+ 
+'-- Move the character to the starting position
+Bonzi.MoveTo 20, 90
+
+'-- Point to the pizza styles	
+Bonzi.Play "GestureDown"	
+Bonzi.Speak "First, I'll ask you the style of pizza you wish."
+
+'-- Move over and point to the pizza toppings	
+Bonzi.MoveTo 420,280
+Bonzi.Play "GestureLeft"
+Bonzi.Speak "Then I'll ask what other toppings you'd like to add or remove."
+	
+Bonzi.Play "RestPose"
+Bonzi.Speak "When you're ready to order, just say 'Place my order',"
+	
+Bonzi.Speak "And I'll confirm your final total."
+
+Bonzi.Play "Think"
+Bonzi.Speak "By the way,"
+	
+Bonzi.Speak "You can request instructions again by clicking the 'Instructions' button."
+Bonzi.Play "LookUpRight"
+Bonzi.Play "LookUpRightBlink"
+Bonzi.Play "LookUpRightReturn"
+
+If AgentCtl.SpeechInput.Enabled = True Then
+	Bonzi.Play "Alert"
+	Bonzi.Speak "You can also interrupt me at any time by pressing the " + AgentCtl.SpeechInput.HotKey + " key."
+End If
+
+Bonzi.Play "Blink"
+Bonzi.Speak "Let's get started."
+Bonzi.MoveTo 200,280
+	
+OrderPrompt
+
+End Sub
+
+
+Sub ClickedInstructions
+'-----------------------------------------------------------
+'-- This subroutine handles ensuring that character is
+'-- prepared to present the instructions if the user clicks
+'-- the Instructions button
+'-----------------------------------------------------------	
+
+'-- Stop any ongoing activity
+Bonzi.Stop
+
+'-- If the character's not visible,
+'-- make him visible
+If Not (Bonzi.Visible) Then
+	Bonzi.Show
+End If
+
+'-- Give the user feedback and
+'-- jump to the Instructions subroutine
+Acknowledge
+DoInstructions
+
+End Sub
+
+
+Sub AgentCtl_Click (ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, ByVal Y)
+
+'-- If the user clicks the character with button one,
+'-- make him say something amusing
+If Button = 1 Then
+	Bonzi.Stop
+	Bonzi.Play "Surprised"
+	Bonzi.Speak "Hey, that tickles!|Be careful with that pointer!"
+	OrderPrompt
+	End If
+
+End Sub
+
+
+Sub InitializeCommands
+'-------------------------------------------------
+'-- This subroutine creates the commands the
+'-- page will use.
+'-------------------------------------------------
+
+'-- Add Instruction button voice grammar
+Bonzi.Commands.Add "Instructions", "&Instructions", "(how do I order [a pizza]|[give me] [(some|the) instructions])"
+Bonzi.Commands("Instructions").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("Instructions").Confidence = -60
+
+'-- Add Order button voice grammar
+Bonzi.Commands.Add "Order","&Order","([(please|I want to|I'd like to|I'm ready to|let's)] [place my] [pizza] [order] [up] [(the|my) pizza] [now]|[I'm] [all] (done|finished)|that's (all|it)|nothing [else])"
+Bonzi.Commands("Order").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("Order").Confidence = -60
+
+'-- Add voice grammar for ordering 
+StyleRequest = "[ [please] [no] [I said] ((I'd like [to]|let's) [(try|order)]|how about|I want|[could you] give me) [(a|the)] ]"
+AddRequest = "[ [please] [no] [I said] ((I'd like [to]|let's) [(try|order)]|how about|I want|[could you] (give me|put on|add)) [some] ]"
+Toppings = "[ [with] [(some|a little)] (pepperoni |(onion |onions )|pineapple |salmon |anchovies |canadian bacon)[and] ]*"
+RemovalRequest = "(no|skip|delete|I don't want|take off|remove|get rid of|hold|forget) [(the|any)]"
+RemoveToppings = "[ (pepperoni |(onion |onions )|pineapple |salmon |anchovies |canadian bacon)[and] ]*"
+
+'-- Add voice grammar for Traditional Style pizza
+Bonzi.Commands.Add "Traditional", "Traditional Cheese Style Pizza", StyleRequest + "[traditional] cheese [style] [pizza]"+ Toppings
+Bonzi.Commands("Traditional").VoiceCaption = "Traditional cheese style pizza"
+Bonzi.Commands("Traditional").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("Traditional").Confidence = -60
+
+'-- Add voice grammar for Hawaiian Style pizza
+Bonzi.Commands.Add "Hawaiian", "Hawaiian Style Pizza", StyleRequest + "hawaiian [style] [pizza]"+ Toppings
+Bonzi.Commands("Hawaiian").VoiceCaption = "Hawaiian style pizza"
+Bonzi.Commands("Hawaiian").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("Hawaiian").Confidence = -60
+
+'-- Add voice grammar for Chicago Style pizza
+Bonzi.Commands.Add "Chicago", "Chicago Style Pizza", StyleRequest + "chicago [style] [pizza]"+ Toppings
+Bonzi.Commands("Chicago").VoiceCaption = "Chicago style pizza"
+Bonzi.Commands("Chicago").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("Chicago").Confidence = -60
+
+'-- Add voice grammar for New York Style pizza
+Bonzi.Commands.Add "NewYork", "New York Style Pizza", StyleRequest + "new york [style] [pizza]"+ Toppings
+Bonzi.Commands("NewYork").VoiceCaption = "New York style pizza"
+Bonzi.Commands("NewYork").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("NewYork").Confidence = -60
+
+'-- Add voice grammar for Seatttle Style pizza
+Bonzi.Commands.Add "Seattle", "Seattle Style Pizza", StyleRequest + "seattle [style] [pizza]"+ Toppings
+Bonzi.Commands("Seattle").VoiceCaption = "Seattle style pizza"
+Bonzi.Commands("Seattle").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("Seattle").Confidence = -60
+
+'-- Add voice grammar for The Works Style pizza
+Bonzi.Commands.Add "TheWorks", "The Works Style Pizza", StyleRequest + "[the] works [style] [pizza]"+ Toppings
+Bonzi.Commands("TheWorks").VoiceCaption = "The Works style pizza"
+Bonzi.Commands("TheWorks").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("TheWorks").Confidence = -60
+
+'-- Add voice grammar for adding toppings
+Bonzi.Commands.Add "AddTopping", ,AddRequest + Toppings
+'Bonzi.Commands("AddTopping").VoiceCaption = "Add some (topping)"
+'Bonzi.Commands("AddTopping").ConfidenceText = "Didn't understand your request."
+'Bonzi.Commands("AddTopping").Confidence = -60
+
+'-- Add voice grammar for removing toppings
+Bonzi.Commands.Add "RemoveTopping",,RemovalRequest + RemoveToppings
+Bonzi.Commands("RemoveTopping").VoiceCaption = "Remove the (topping)"
+Bonzi.Commands("RemoveTopping").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("RemoveTopping").Confidence = -60
+
+'-- Add support for Advanced Character Options
+Bonzi.Commands.Add "AdvCharOpt","&Advanced Character Options", "advanced character options"
+Bonzi.Commands("AdvCharOpt").ConfidenceText = "Didn't understand your request."
+Bonzi.Commands("AdvCharOpt").Confidence = -60
+
+End Sub
+
+
+Sub AgentCtl_Command(byval UserInput)
+'-----------------------------------------------------
+'-- This event is fired by the Agent control whenever
+'-- a command is selected 
+'-----------------------------------------------------
+HeardWhat = UserInput.Voice
+
+'-----------------------------------------------------	
+'-- If we get a low overall confidence score, process
+'-- as a bad recognition
+'-----------------------------------------------------
+If (UserInput.Confidence <= -60) then 
+	BadAcceptanceRec
+	Exit Sub
+
+'------------------------------------------------------	
+'-- Otherwise see if the first alternative was garbage
+'-- If it was, then handle as a bad recognition
+'------------------------------------------------------
+ElseIf (UserInput.Alt1Name="") and (UserInput.Alt2Name<>"") and (UserInput.Name<>UserInput.Alt2Name) And (Abs(UserInput.Confidence-UserInput.Alt2Confidence) < 10) then
+	msgbox "failed first alt"
+	BadAcceptanceRec
+	Exit Sub
+				
+'------------------------------------------------------
+'-- We got a good confidence score, the first and second 
+'-- choices are the same or the delta > 10 so then let's 
+'-- process the results
+'------------------------------------------------------ 
+Else
+	HeardSomething = True
+	ChosenBySpeech = True
+	NoInput = 0
+	RecogError = 0
+
+	'-------------------------------------------------
+	'-- Go through each of our menu item ids looking
+	'-- for a match.  If a match is found, then take
+	'-- the appropriate action.  
+	'-------------------------------------------------
+	CommandSelected = UserInput.Name
+	
+	Select Case CommandSelected
+
+	Case "Instructions"
+		DoInstructions
+		Exit Sub
+
+	Case "Order"
+		DoOrder
+		Exit Sub
+		
+	Case "Traditional" 
+		If HeardWhat = "" Then
+			HeardWhat = "traditional"
+		End If
+
+		AddRequest = True
+		ProcessInput
+		Exit Sub
+
+	Case "Hawaiian" 
+		If HeardWhat = "" Then
+			HeardWhat = "hawaiian"
+		End If
+
+		AddRequest = True
+		ProcessInput
+		Exit Sub
+
+	Case "Chicago" 
+		If HeardWhat = "" Then
+			HeardWhat = "chicago"
+		End If
+
+		AddRequest = True
+		ProcessInput
+		Exit Sub
+
+	Case "NewYork" 
+		If HeardWhat = "" Then
+			HeardWhat = "new york"
+		End If
+
+		AddRequest = True
+		ProcessInput
+		Exit Sub
+
+	Case "Seattle" 
+		If HeardWhat = "" Then
+			HeardWhat = "seattle"
+		End If
+
+		AddRequest = True
+		ProcessInput
+		Exit Sub
+
+	Case "TheWorks" 
+		If HeardWhat = "" Then
+			HeardWhat = "works"
+		End If
+
+		AddRequest = True
+		ProcessInput
+		Exit Sub
+
+	Case "AddTopping"
+		AddRequest = True
+		ProcessInput
+		Exit Sub
+
+	Case "RemoveTopping"
+		AddRequest = False
+		ProcessInput
+		Exit Sub
+
+	Case "AdvCharOpt"
+		AgentCtl.PropertySheet.Visible = True
+
+		Bonzi.Stop
+		Bonzi.GestureAt AgentCtl.PropertySheet.Left,AgentCtl.PropertySheet.Top
+		Bonzi.Speak "I see that you opened the 'Advanced Character Options'"
+		
+		If Not AgentCtl.SpeechInput.Enabled Then
+			Bonzi.Play "Explain"
+			Bonzi.Speak "If you want to enable speech input, click the 'Speech Input' tab"
+			Bonzi.Speak "Then check the 'Characters Listen For Input' option, and click 'OK.'"
+		Else
+			Bonzi.Play "Explain"
+			Bonzi.Speak "You can change many of my interaction options here."
+		End If
+		
+		Exit Sub
+
+	End Select
+
+End If
+		
+End Sub	
+
+
+Sub BadAcceptanceRec 
+'--------------------------------------------------
+'-- We didn't get a good confidence score  
+'-- so give appropriate feedback
+'--------------------------------------------------
+TurnOffListeningMode
+
+Select Case RecogError
+
+Case 0 
+	RecogError = 1
+	Bonzi.Play "DontRecognize"
+	Set SpeechInputRequest = Bonzi.Speak ("Huh?|What?|How's that?")
+
+Case 1
+	RecogError = 2
+	Bonzi.Play "Decline"
+	Set SpeechInputRequest = Bonzi.Speak ("Say that again?|Please repeat|One more time?")
+
+Case 2
+	RecogError = 3
+	Bonzi.Play "StartListening"
+	If OrderType = 0 Then
+		Set SpeechInputRequest = Bonzi.Speak ("Please say 'Traditional Cheese,' 'Hawaiian,' 'New York,' 'Chicago,' 'Seattle,' or 'The Works'.")
+	Else
+		Set SpeechInputRequest = Bonzi.Speak ("Please say 'Pepperoni,' 'Onion,' 'Pineapple,' 'Salmon,' 'Anchovies,' or 'Canadian Bacon.'")
+
+	End If
+
+Case 3
+	Bonzi.Play "Suggest"
+	Set SpeechInputRequest = Bonzi.Speak ("If your order is complete, say 'Place my order' or 'Instructions' if you need help.")
+
+End Select
+	
+End Sub
+
+	
+Sub AgentCtl_RequestComplete (ByVal Request)
+'------------------------------------------------------------
+'-- This subroutine handles all Request object processing
+'------------------------------------------------------------	
+
+HeardSomething = False
+
+'-- If the Request is to check the Listening state 
+'-- when the character finishes speaking
+If Request = SpeakingDoneRequest And Request.Status <> 3 Then
+	CheckListeningState
+
+	Bonzi.Play "Pleased"
+	Bonzi.Speak "Let me tell you how you can place your order."
+
+	'-- Have Bonzi explain how to order
+	DoInstructions
+
+'-- If the Request is to turn on Listening mode
+'-- when the character finishes speaking 
+ElseIf Request = SpeechInputRequest Then
+	'-- if we were interrupted because the user pressed the key
+	If Request.Status = 3 Then
+		Exit Sub
+	Else 
+		TurnOnListeningMode
+	End If
+	
+	
+'-- If the Request is to update the display of the status text
+'-- when the character finishes speaking
+ElseIf Request = StatusRequest Then
+	Bonzi.Play "Blink"
+
+	'-- Make certain speech is enabled
+	'-- before you change the text
+	If AgentCtl.SpeechInput.Enabled = True Then
+		Window.Status = "Press the " + AgentCtl.SpeechInput.Hotkey + " key to talk to Bonzi."
+	Else '-- Otherwise, exit this subroutine
+		Exit Sub
+	End If
+
+End If
+
+End Sub
+
+
+Sub TurnOnListeningMode
+'------------------------------------------------------
+'-- This subroutine turns on Listening mode
+'------------------------------------------------------
+If AgentCtl.SpeechInput.Enabled = True Then
+
+	'-- Check the character's listening state
+	CheckListeningState
+
+	If ListenOK = True Then
+		Bonzi.Play "Alert"
+		Bonzi.Listen True
+	Else 
+		Exit Sub
+	End If
+
+End If
+
+End Sub
+
+
+Sub TurnOffListeningMode
+'------------------------------------------------------
+'-- This subroutine turns off Listening mode
+'------------------------------------------------------
+If AgentCtl.SpeechInput.Enabled = True Then
+
+	'-- Check to see if the character is visible
+	If Bonzi.Visible Then
+
+		'-- If we are currently listening,
+		'-- turn off the Listening mode
+		If IsListening = True Then
+			Bonzi.Listen False
+
+		End If
+
+	Else 
+		'-- The character's currently hidden
+		'-- so reflect this in the status text
+		Window.Status = "Cannot change Listening Mode because Bonzi is hidden."
+
+	End If
+
+Else '-- If speech input is not enabled, just exit
+	Exit Sub
+
+End If
+ 
+End Sub
+
+
+Sub CheckListeningState
+'----------------------------------------------------
+'-- This routine checks the current listening state
+'----------------------------------------------------
+Select Case Bonzi.SRStatus
+
+Case 0 '-- Listening state is available
+	ListenOK = True
+	Exit Sub
+
+Case 1 '-- Couldn't find an audio input device
+	Bonzi.Play "Decline"
+	Bonzi.Speak "It doesn't appear that your computer has support for speech input."
+	ListenOK = False
+
+Case 2 '-- Client/character is not input active
+	If Not Bonzi.Visible Then
+		Window.Status = "Bonzi is currently hidden."
+	End If
+	ListenOK = False
+
+Case 3 '-- The audio device is busy or unavailable
+	Bonzi.Play "Decline"
+	Bonzi.Speak "It appears that some application is currently using your sound card."
+	Bonzi.Play "Blink"
+	Bonzi.Speak "You may have to use your mouse to make selections."
+	ListenOK = False
+
+Case 4 '-- Couldn't find speech engine support
+	Bonzi.Play "Sad"
+	If Bonzi.SRModeID = "" Then
+		Bonzi.Speak "I checked your computer and you don't currently have a compatible speech recognition engine installed."
+	End If
+	Bonzi.Speak "So you won't be able to use speech input with this demo."
+	ListenOK = False
+
+Case 5 '-- Speech input has been disabled
+	Bonzi.Play "Surprised"
+	Bonzi.Speak "I noticed that you currently have speech input disabled."
+	Bonzi.Speak "So you won't be able to speak to me to order your pizza."
+	Bonzi.Play "Suggest"
+	Bonzi.Speak "If you want to re-enable speech input, right-click on me and then choose 'Advanced Character Options.'"
+	ListenOK = False
+
+Case 6 '-- Unknown audio device error
+	Bonzi.Play "Confused"
+	Bonzi.Speak "There is some problem with your sound card, but I can't determine what it is."
+	ListenOK = False
+
+End Select
+	
+
+End Sub
+
+
+Sub OrderPrompt
+'----------------------------------------------------------
+'-- This subroutine handles the conversation for ordering 
+'-- toppings
+'----------------------------------------------------------
+
+TurnOffListeningMode
+
+If OrderType = 0 Then 
+	Bonzi.MoveTo 200,280
+	Bonzi.Play "GestureRight"
+	Set SpeechInputRequest = Bonzi.Speak ("What style of pizza would you like?|What kind of pizza would you like?|Your preferred style?")
+
+ElseIf OrderType = 1 Then 
+	Bonzi.MoveTo 420,280
+	Bonzi.Play "GestureLeft"
+	
+	If ChosenBySpeech Then
+		Set SpeechInputRequest = Bonzi.Speak ("What other toppings would you like to add or remove?|What else?|What other topping?")
+		ChosenBySpeech = False
+	Else 
+		Bonzi.Speak "What other toppings would you like to add or remove?|What else?|What other topping?"
+		Bonzi.Play "Blink"
+	End If
+
+End If
+
+End Sub
+
+
+Sub AgentCtl_ListenStart (ByVal CharacterID)
+'-----------------------------------------------------------------
+'-- This subroutine updates the status text to indicate
+'-- that the character is currently listening
+'-----------------------------------------------------------------
+IsListening = True
+
+Window.Status = "Bonzi's listening"
+
+End Sub
+
+
+Sub AgentCtl_ListenComplete (ByVal CharacterID, ByVal Cause)
+'-----------------------------------------------------------------
+'-- This subroutine handles the processing when 
+'-- the Listening mode is turned off
+'-----------------------------------------------------------------
+
+Window.Status = "Bonzi's not listening"
+
+If HeardSomething = False Then
+
+	'-- We didn't get any input from the user
+	If Cause = 2 Then 
+		'-- The programmed Listening mode timed out
+
+		'-- Current NoInput (0 = first request, 
+		'-- 1 = second request)
+		If NoInput = 0 Then
+			NoInput = 1 
+			Bonzi.Play "DontRecognize"
+			Set SpeechInputRequest = Bonzi.Speak ("I'm sorry, I didn't hear your response. Please repeat your request.")
+			
+		ElseIf NoInput = 1 Then
+			NoInput = 2
+
+			'-- Current OrderType (0 = style, 1 = ingredient)
+			If OrderType = 0 Then
+				TurnOffListeningMode
+				Bonzi.Play "Explain"
+				Set SpeechInputRequest = Bonzi.Speak ("Please say 'Traditional Cheese,' 'Hawaiian,' 'Chicago,' 'New York,' 'Seattle,' or 'The Works.'")
+	
+			Else
+				TurnOffListeningMode
+				Set SpeechInputRequest = Bonzi.Speak ("Please say 'Pepperoni,' 'Onions,' 'Pineapple,' 'Salmon,' 'Anchovies,' or 'Canadian Bacon.'|If your order is complete, say 'Place my order.'")
+			End If
+
+		Else 
+			'-- Require that the user initiate spoken input
+			Bonzi.Play "Suggest"
+			Bonzi.Speak "It sounds like you need a little more time to decide."
+			Set StatusRequest = Bonzi.Speak ("Just press the " + AgentCtl.SpeechInput.HotKey + " key when you are ready to continue.")
+
+		End If
+
+	ElseIf Cause = 3 Then
+		'-- The Listening key timed out
+		If OrderType = 0 Then
+			BadAcceptanceRec
+
+		Else
+			Set StatusRequest = Bonzi.Speak ("When you want to continue, press and hold the " + AgentCtl.SpeechInput.HotKey + " key again.|When you are ready to continue with your order, press and hold the " + AgentCtl.SpeechInput.Hotkey + " key.")
+
+		End If
+
+	End If
+
+End If
+
+End Sub
+
+
+Sub SetTotalCost
+'-------------------------------------------------
+'-- This method will set the total cost of the
+'-- pizza.
+'-------------------------------------------------
+
+'-- Get total number of toppings.
+total = document.OrderForm.Pepperoni.checked + _
+     	document.OrderForm.Onion.checked     + _
+     	document.OrderForm.Pineapple.checked + _
+     	document.OrderForm.Salmon.checked    + _
+     	document.OrderForm.Anchovies.checked + _
+     	document.OrderForm.CanadianBacon.checked
+
+'----------
+'-- The price of a pizza is $10... then add the number of
+'-- toppings.
+'----------
+document.OrderForm.sum.value = "$" + CStr(10 + (abs(total) * 2)) + ".00"
+
+End Sub
+
+
+Sub SetIngredient(byval ingredient)
+'-------------------------------------------------
+'-- The subroutine sets the state of a topping
+'-------------------------------------------------
+Select Case ingredient
+
+Case "Pepperoni" 
+	document.OrderForm.Pepperoni.Checked = True
+			
+Case "Onion" 
+	document.OrderForm.Onion.checked = True
+
+Case "Pineapple"
+	document.OrderForm.pineapple.checked = True
+
+Case "CanadianBacon"
+	document.OrderForm.CanadianBacon.checked = True
+
+Case "Salmon" 
+	document.OrderForm.salmon.checked = True
+
+Case "Anchovies"
+	document.OrderForm.anchovies.checked = True
+
+End Select
+
+SetTotalCost
+
+End Sub
+
+
+'--------------------------------------------------------
+'-- The following Set subroutines are called via OnClick 
+'-- when the user selects an ingredient.
+'---------------------------------------------------------
+Sub SetPepperoni
+
+If OrderType = 0 Then
+	document.OrderForm.Pepperoni.Checked = False
+	RequestStyleFirst	
+	Exit Sub
+
+End If
+
+Acknowledge
+If document.OrderForm.Pepperoni.Checked Then
+	Bonzi.Play "Alert"
+      Bonzi.Speak "Yum, I \emp\love pepperoni.|Pepperoni is my favorite topping."
+	
+Else 
+	Bonzi.Play "Sad"
+	Bonzi.Speak "OK boss. No pepperoni.|No pepperoni.|Removing the pepperoni per your request."
+	
+End If
+
+SetTotalCost
+
+End Sub
+
+
+Sub SetOnion
+
+If OrderType = 0 Then
+	document.OrderForm.Onion.Checked = False
+	RequestStyleFirst	
+	Exit Sub
+
+End If
+
+Acknowledge
+If document.OrderForm.Onion.Checked Then
+	Bonzi.Play "Surprised"
+	Bonzi.Speak "Hope you don't have a date later.|I'll add some breath mints, too."
+	
+Else
+	Bonzi.Play "Alert"
+	Bonzi.Speak "No onions.|I'm removing the onions from your order."
+	
+End If
+
+SetTotalCost
+
+End Sub
+
+
+Sub SetPineapple
+
+If OrderType = 0 Then
+	document.OrderForm.Pineapple.Checked = False
+	RequestStyleFirst	
+	Exit Sub
+End If
+
+Acknowledge
+
+If document.OrderForm.Pineapple.Checked Then
+	Bonzi.Play "Announce"
+	Bonzi.Speak "Golden pineapple, shipped in this morning from sunny Hawaii.|Pineapple is my favorite sunshine fruit."
+	
+Else 
+	Bonzi.Play "Acknowledge"
+	Bonzi.Speak "No pineapple.|Removed the pineapple."
+
+End If
+
+End Sub
+
+
+Sub SetSalmon
+
+If OrderType = 0 Then
+	document.OrderForm.Salmon.Checked = False
+	RequestStyleFirst	
+	Exit Sub
+End If
+
+Acknowledge
+	
+If document.OrderForm.Salmon.Checked Then
+	Bonzi.Play "Blink"
+	Bonzi.Speak "The salmon is freshly caught from the Copper River.|Great! The sockeye is superb today."
+	
+Else
+	Bonzi.Play "Acknowledge"
+	Bonzi.Speak "OK, no more salmon.|Salmon's gone."
+
+End If
+
+SetTotalCost
+
+End Sub
+
+
+Sub SetAnchovies
+
+If OrderType = 0 Then
+	document.OrderForm.Anchovies.Checked = False
+	RequestStyleFirst	
+	Exit Sub
+End If
+
+Acknowledge
+If document.OrderForm.Anchovies.Checked Then
+	Bonzi.Play "Sad"
+	Bonzi.Speak "Anchovies! You like smelly little dead fish?|How can you eat those salty little things?"
+	
+Else
+	Bonzi.Play "Acknowledge"
+	Bonzi.Speak "What a relief!|No more anchovies."
+
+End If
+
+End Sub
+
+
+Sub SetCanadianBacon
+
+If OrderType = 0 Then
+	document.OrderForm.CanadianBacon.Checked = False
+	RequestStyleFirst	
+	Exit Sub
+End If
+
+Acknowledge
+If document.OrderForm.CanadianBacon.Checked Then
+	If Not document.OrderForm.Pineapple.Checked Then
+		Bonzi.Speak "Canadian Bacon, you know it goes great with pineapple."
+	Else
+		Bonzi.Play "Acknowledge"
+		Bonzi.Speak "Yum. Canadian Bacon, a great choice!"
+
+	
+	End If
+
+Else
+	Bonzi.Play "Acknowledge"
+	Bonzi.Speak "No more Canadian bacon.|I've removed the Canadian bacon."
+	
+End If
+
+SetTotalCost
+
+End Sub
+
+
+Sub DoOrder
+'----------------------------------------------------
+'-- This subroutine finalizes the user's order
+'----------------------------------------------------
+
+If OrderType = 0 Then
+	RequestStyleFirst
+	Exit Sub
+
+End If
+
+'----------
+'-- Make sure the total cost is set
+'----------
+SetTotalCost
+
+'----------
+'-- Give the user some feedback
+'----------
+Acknowledge
+Bonzi.Speak "Let's review your order."
+Bonzi.Play "write"
+Bonzi.Speak "Let's see."
+Bonzi.Speak "You ordered a " + CurrentStyle + " style pizza,"
+Bonzi.Play "WriteContinued"
+Bonzi.Speak "with cheese, sauce, "
+
+If document.OrderForm.Pepperoni.Checked = True Then
+	Bonzi.Speak "pepperoni,"
+End If
+
+If document.OrderForm.Onion.Checked = True Then
+	Bonzi.Speak "onions,"
+End If
+
+If document.OrderForm.Pineapple.Checked = True Then
+	Bonzi.Speak "pineapple,"
+End If
+
+If document.OrderForm.Salmon.Checked = True Then
+	Bonzi.Speak "salmon,"
+End If
+
+If document.OrderForm.Anchovies.Checked = True Then
+	Bonzi.Speak "anchovies,"
+End If
+
+If document.OrderForm.CanadianBacon.Checked = True Then
+	Bonzi.Speak "and Canadian bacon."
+End If
+
+Bonzi.Play "WriteReturn"
+
+'----------------------------------------------
+'-- Total the pizza and sign off
+'----------------------------------------------
+Bonzi.Play "Alert"
+Bonzi.Speak "Your total will be..."
+Bonzi.Play "Process"
+Bonzi.Speak document.OrderForm.sum.value + "."
+
+Bonzi.MoveTo 20,90
+Set StatusRequest = Bonzi.Speak ("Thank you for ordering from Bonzi's Pizza Palace.")
+Bonzi.Play "Pleased"
+		
+End Sub
+
+
+Sub ClearRadioButtons
+'------------------------------------------------------
+'-- This subroutine clears all of the radio buttons on
+'-- the order form.
+'-------------------------------------------------------
+document.OrderForm.elements(0).checked = False
+document.OrderForm.elements(1).checked = False
+document.OrderForm.elements(2).checked = False
+document.OrderForm.elements(3).checked = False
+document.OrderForm.elements(4).checked = False
+document.OrderForm.elements(5).checked = False
+
+End Sub
+ 
+
+Sub ProcessInput
+'--------------------------------------------------------
+'-- Process the text returned in the Command event
+'-- checking to see what appropriate strings it included
+'--------------------------------------------------------
+If InStr(HeardWhat, "traditional") Then
+	DoTraditional
+	ProcessedStyle  = True
+		
+End If
+
+If InStr(HeardWhat, "hawaiian") Then
+	DoHawaiian
+	ProcessedStyle = True
+
+End If
+
+If InStr(HeardWhat, "chicago") Then
+	DoChicago
+	ProcessedStyle  = True
+
+End If
+
+If InStr(HeardWhat, "seattle") Then
+	DoSeattle
+	ProcessedStyle  = True
+
+End If
+
+If InStr(HeardWhat, "new york") Then
+	DoNewYork
+	ProcessedStyle  = True
+
+End If
+
+If InStr(HeardWhat, "works") Then
+	DoTheWorks
+	ProcessedStyle = True
+	
+End If
+
+'-- If we don't have a pizza style yet, request 
+'-- that the user select one first
+If OrderType = 0 and ProcessedStyle = False Then
+	RequestStyleFirst
+	Exit Sub
+End If
+
+If InStr(HeardWhat, "pepperoni") Then
+
+	'-- request to add pepperoni
+	If AddRequest Then 
+
+		'-- Is pepperoni already on the order?
+		If document.OrderForm.Pepperoni.checked = False Then
+			document.OrderForm.Pepperoni.checked = True
+			SetPepperoni
+
+		Else 
+			Bonzi.Speak "Already got pepperoni on your order."
+
+		End If
+
+	'-- request to remove pepperoni
+	Else 
+		document.OrderForm.Pepperoni.checked = False
+		SetPepperoni
+		
+	End If
+
+	ProcessedTopping = True
+	OrderPrompt
+
+
+End If
+
+If InStr(HeardWhat, "onion") Then
+
+	'-- Request to add onion
+	If AddRequest Then
+
+		'-- Is onion already on the order?
+		If document.OrderForm.Onion.checked = False Then
+			document.OrderForm.Onion.checked = True
+			SetOnion
+
+		Else 
+			Bonzi.Speak "Got that already."
+
+		End If
+
+	'-- Request to remove onion
+	Else 
+		document.OrderForm.Onion.checked = False
+		SetOnion
+
+	End If
+
+	ProcessedTopping = True
+	OrderPrompt
+
+End If
+
+If InStr(HeardWhat, "pineapple") Then
+
+	'-- Request to add pineapple
+	If AddRequest Then
+
+		'-- Is pineapple already on the order?
+		If document.OrderForm.Pineapple.checked = False Then
+			document.OrderForm.Pineapple.checked = True
+			SetPineapple
+
+		Else 
+			Bonzi.Speak "Already got that."
+		
+		End If
+
+	'-- Request to remove pineapple
+	Else 
+		document.OrderForm.Pineapple.checked = False
+		SetPineapple
+	End If
+
+	ProcessedTopping  = True
+	OrderPrompt
+
+End If
+
+If InStr(HeardWhat, "salmon") Then
+
+	'-- Request to add salmon
+	If AddRequest Then
+
+		'-- Is salmon already on the order?
+		If document.OrderForm.Salmon.checked = False Then
+			document.OrderForm.Salmon.checked = True
+			SetSalmon
+		Else 
+			Bonzi.Speak "It's there."
+
+		End If
+
+	'-- Request to remove salmon
+	Else 
+		document.OrderForm.Salmon.checked = False
+		SetSalmon
+		
+	End If
+
+	ProcessedTopping = True
+	OrderPrompt
+
+End If
+
+If InStr(HeardWhat, "anchovies") Then
+
+	'-- Request to add anchovies
+	If AddRequest Then
+
+		'-- Are anchovies already on the order?
+		If document.OrderForm.Anchovies.checked = False Then
+			document.OrderForm.Anchovies.checked = True
+			SetAnchovies
+		Else 
+			Bonzi.Speak "They're already there."
+
+		End If
+	
+	'-- Request to remove anchovies
+	Else 
+		document.OrderForm.Anchovies.checked = False
+		SetAnchovies
+	
+	End If
+
+	ProcessedTopping = True
+	OrderPrompt
+
+End If
+
+If InStr(HeardWhat, "canadian bacon") Then
+
+	'-- Request to add canadian bacon
+	If AddRequest Then
+
+		'-- Is Canadian Bacon already on the order?
+		If document.OrderForm.CanadianBacon.checked = False Then
+			document.OrderForm.CanadianBacon.checked = True
+			SetCanadianBacon
+		
+		Else 
+			Bonzi.Speak "It's already there."
+		
+		End If
+
+	'-- Request to remove canadian bacon
+	Else 
+		document.OrderForm.CanadianBacon.checked = False
+		SetCanadianBacon
+
+	End If
+		
+	ProcessedTopping = True
+	OrderPrompt
+
+End If
+
+If ProcessedStyle = False And ProcessedTopping = False Then
+	BadAcceptanceRec
+	Exit Sub
+
+End If
+
+End Sub
+
+
+Sub SetIngredients(byval bPepperoni,byval bOnion,byval bPineapple,byval bSalmon,byval bAnchovies,byval bCanadianBacon)
+'-------------------------------------------------
+'--   Checks/unchecks the appropriate checkboxes on the page.
+'--   Recomputes cost of the pizza.
+'-------------------------------------------------
+
+document.OrderForm.Pepperoni.checked  = bPepperoni
+document.OrderForm.Onion.checked      = bOnion
+document.OrderForm.Pineapple.checked  = bPineapple
+document.OrderForm.Salmon.checked     = bSalmon
+document.OrderForm.Anchovies.checked  = bAnchovies
+document.OrderForm.CanadianBacon.checked  = bCanadianBacon
+
+SetTotalCost
+
+End Sub
+
+
+Sub Acknowledge
+'-----------------------------------------------
+'-- This routine positively acknowledges the 
+'-- user's request
+'-----------------------------------------------
+
+TurnOffListeningMode
+
+Bonzi.Stop
+Bonzi.Play "Acknowledge"
+
+End Sub
+
+
+Sub RequestStyleFirst
+'----------------------------------------------
+'-- This routine reminds the user that a style
+'-- must be selected before toppings
+'-----------------------------------------------
+TurnOffListeningMode
+Bonzi.Stop
+Bonzi.Play "Decline"
+Bonzi.Speak "You haven't selected a pizza style yet.|Please select a pizza style first.|I need your style preference first."
+OrderPrompt
+
+End Sub
+
+
+Sub DoTraditional
+'-------------------------------------------------
+'-- This subroutine handles the selection of a 
+'-- traditional pizza
+'-------------------------------------------------
+ClearRadioButtons
+SetIngredients False, False, False, False, False, False
+document.OrderForm.Elements(0).Checked = True
+OrderType = 1
+CurrentStyle = "traditional cheese"
+SetTotalCost
+	
+Acknowledge
+		
+Bonzi.Play "Explain"
+Bonzi.Speak "Our traditional cheese pizza,|Our traditional cheese pizza,"
+Bonzi.Speak "I can tell you like the simpler things in life.|You'll really like our famous cracker crumb crust."
+Bonzi.Speak "This one includes the finest mozzarella cheese and our tangy tomato sauce."
+
+OrderPrompt
+
+End Sub
+
+ 
+Sub DoHawaiian
+'------------------------------------------------------------
+'--   A Hawaiian pizza contains Pineapple and Canadian Bacon.
+'------------------------------------------------------------
+ClearRadioButtons
+SetIngredients False, False, True, False, False, True
+document.OrderForm.Elements(1).Checked = True
+OrderType = 1
+CurrentStyle = "Hawaiian"
+SetTotalCost
+
+Acknowledge
+Bonzi.Speak "The Hawaiian pizza.|Hawaiian style"
+Bonzi.Play "Explain"
+Bonzi.Speak "Nice choice."
+Bonzi.Speak "This style combines the sweet taste of pineapple"
+Bonzi.Speak "And the leanest Canadian bacon."
+
+OrderPrompt
+
+End Sub
+
+
+Sub DoChicago
+'-------------------------------------------------
+'--   A Chicago pizza contains Onion and Pepperoni.
+'-------------------------------------------------
+ClearRadioButtons
+SetIngredients True, True, False, False, False, False
+document.OrderForm.Elements(2).Checked = True
+OrderType = 1
+CurrentStyle = "Chicago"
+SetTotalCost
+
+Acknowledge
+Bonzi.Play "Congratulate"
+Bonzi.Speak "The Chicago style, my Godfodder's favorite.|A Chicago pizza, my personal favorite."
+Bonzi.Speak "Topped with the finest pepperoni and tangy onions.|This one includes onions and pepperoni."
+
+OrderPrompt
+
+End Sub
+
+
+Sub DoNewYork
+'-------------------------------------------------
+'--   A New York pizza contains Pepperoni.
+'-------------------------------------------------
+ClearRadioButtons
+SetIngredients True, False, False, False, False, False
+document.OrderForm.Elements(3).Checked = True
+OrderType = 1
+CurrentStyle = "New York"
+SetTotalCost
+
+Acknowledge
+Bonzi.Play "Read"
+Bonzi.Speak "The New York style,|A New York pizza,"
+Bonzi.Play "ReadContinued"
+Bonzi.Speak "Piled high with pepperoni."
+Bonzi.Play "ReadReturn"
+
+OrderPrompt
+
+End Sub
+
+
+Sub DoSeattle
+'-------------------------------------------------
+'--   A Seattle pizza contains Rain... However,
+'--   Rain is not a valid choice so the user can
+'--   only select Salmon.
+'-------------------------------------------------
+ClearRadioButtons
+SetIngredients False, False, False, True, False, False
+document.OrderForm.Elements(4).Checked = True
+OrderType = 1
+CurrentStyle = "Seattle"
+SetTotalCost
+
+Acknowledge
+Bonzi.Speak "Our Seattle style pizza.|The Seattle style,"
+Bonzi.Speak "Topped with the finest Sockeye salmon from the Copper River in Alaska."
+
+OrderPrompt
+	
+End Sub
+
+
+Sub DoTheWorks
+'-------------------------------------------------
+'--   A pizza with the works contains everything.
+'-------------------------------------------------
+ClearRadioButtons
+SetIngredients True, True, True, True, True, True
+document.OrderForm.Elements(5).Checked = True
+OrderType = 1
+CurrentStyle = "Works"
+SetTotalCost
+
+Acknowledge
+Bonzi.Play "Pleased"
+Bonzi.Speak "Excellent."
+Bonzi.Speak "The Works, |The Works pizza, "
+Bonzi.Speak "our most popular!|I hope you have a big appetite.|This one's got everything.|This one's piled high with goodies."
+
+OrderPrompt
+
+End Sub
+
+-->
+
+</script>
+
+<form name="OrderForm">
+<table border="1" bgcolor="#FFFFCC" width="200" align="LEFT">
+   <tr><td bgcolor="NAVY" align="CENTER"><font color="FFFFCC">Pick A Style...</td></tr>
+   <tr><td><img src="http://web.archive.org/web/20050205100824im_/http://agent.microsoft.com/agent2/sdk/samples/html/SLICE.GIF" alt="*" align="CENTER">&nbsp;<input type="RADIO" name="RadioGroup" onclick="DoTraditional">Traditional Cheese  </td></tr>
+   <tr><td><img src="http://web.archive.org/web/20050205100824im_/http://agent.microsoft.com/agent2/sdk/samples/html/SLICE.GIF" alt="*" align="CENTER">&nbsp;<input type="RADIO" name="RadioGroup" onclick="DoHawaiian">Hawaiian  </td></tr>
+   <tr><td><img src="http://web.archive.org/web/20050205100824im_/http://agent.microsoft.com/agent2/sdk/samples/html/SLICE.GIF" alt="*" align="CENTER">&nbsp;<input type="RADIO" name="RadioGroup" onclick="DoChicago">Chicago   </td></tr>
+   <tr><td><img src="http://web.archive.org/web/20050205100824im_/http://agent.microsoft.com/agent2/sdk/samples/html/SLICE.GIF" alt="*" align="CENTER">&nbsp;<input type="RADIO" name="RadioGroup" onclick="DoNewYork">New York  </td></tr>
+   <tr><td><img src="http://web.archive.org/web/20050205100824im_/http://agent.microsoft.com/agent2/sdk/samples/html/SLICE.GIF" alt="*" align="CENTER">&nbsp;<input type="RADIO" name="RadioGroup" onclick="DoSeattle">Seattle   </td></tr>
+   <tr><td><img src="http://web.archive.org/web/20050205100824im_/http://agent.microsoft.com/agent2/sdk/samples/html/SLICE.GIF" alt="*" align="CENTER">&nbsp;<input type="RADIO" name="RadioGroup" onclick="DoTheWorks">The Works </td></tr>
+</table>
+<table border="1" bgcolor="#FFFFCC" width="200" align="RIGHT">
+   <tr><td bgcolor="NAVY" align="CENTER"><font color="FFFFCC">Pick a Topping...</td></tr>
+   <tr><td><input type="CHECKBOX" name="Pepperoni" onclick="SetPepperoni">Pepperoni </td></tr>
+   <tr><td><input type="CHECKBOX" name="Onion" onclick="SetOnion">Onions     </td></tr>
+   <tr><td><input type="CHECKBOX" name="Pineapple" onclick="SetPineapple">Pineapple </td></tr>
+   <tr><td><input type="CHECKBOX" name="Salmon" onclick="SetSalmon">Salmon    </td></tr>
+   <tr><td><input type="CHECKBOX" name="Anchovies" onclick="SetAnchovies">Anchovies </td></tr>
+   <tr><td><input type="CHECKBOX" name="CanadianBacon" onclick="SetCanadianBacon">Canadian Bacon       </td></tr>
+</font>
+</table>
+<center>
+	<input type="BUTTON" value="Instructions" name="Instructions" onclick="ClickedInstructions">
+	<br>
+<br>
+	<br><font size="4">Order Now!<br><br>
+	</font><font size="2">
+	<i> The cost for a Pizza is $10.00 </i> <br>
+	<i> Each additional topping is $2.00 </i><br><br>
+
+	Total = <input name="Sum" value="$0.00" size="8"><br><br>
+	<input type="BUTTON" value="Place My Order" name="Order" onclick="DoOrder">
+
+</center>
+</font>
+<br>
+</form>
+</body>
+</html>
+
+
+
+
+<!--
+     FILE ARCHIVED ON 10:08:24 Feb 05, 2005 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:12:23 Feb 17, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  RedisCDXSource: 0.852
+  exclusion.robots: 0.204
+  load_resource: 875.919
+  exclusion.robots.policy: 0.189
+  esindex: 0.016
+  captures_list: 914.76
+  PetaboxLoader3.resolve: 1492.845 (2)
+  LoadShardBlock: 897.607 (3)
+  CDXLines.iter: 12.622 (3)
+  PetaboxLoader3.datanode: 263.576 (4)
+--> 

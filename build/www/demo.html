@@ -1,0 +1,259 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>VoiceForge | Demo</title>
+    <link rel="stylesheet" type="text/css" href="https://www.voiceforge.com/style/main2.css">
+    <!--[if lt IE 9]>
+    <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    </head>
+    <body>
+    <header>
+     <h1><a href="/"><img src="https://www.voiceforge.com/images/VoiceForge.jpg" width="186" height="57" alt="VoiceForge"></a></h1>
+     <nav>
+      <ul id="toolbar-navigation">
+       <li><a href="/">Home</a>
+       </li><li class="lst"><a href="https://www.voiceforge.com/contact-us">Contact Us</a>
+      </li></ul>
+      <ul id="main-navigation">
+       <li><a href="https://www.voiceforge.com/what-is-voiceforge">What is VoiceForge?</a>
+       </li><li class="cur"><a href="https://www.voiceforge.com/demo">Demo</a>
+       </li><li><a href="https://www.voiceforge.com/partners">Our Partners</a>
+       </li><li><a href="https://www.voiceforge.com/company">Our Company</a>
+       </li><li class="lst"><a href="https://www.voiceforge.com/sign-up">Sign Up</a>
+      </li></ul>
+     </nav>
+    </header>
+    
+    <div class="page-header">
+    <img src="/images/page/demo.jpg" width="860" height="154" alt="Demo" usemap="#hmap">
+    <map name="hmap">
+    <area shape="rect" coords="542,22,669,68" href="https://www.voiceforge.com/demo?uservoice=Belle">
+    </map>
+    </div>
+    
+    <div class="demo">
+    
+    <div id="vfplayer">
+    <div id="voximg"><img alt="Kidaroo" src="https://www.voiceforge.com/images/voices/sqr/Kidaroo.jpg"></div>
+    <textarea id="dtu" name="dtu" cols="50" rows="2" wrap="soft">Enter some text here, and click the play button on the right to start listening!</textarea>
+    <a id="play" href="#">Play</a>
+    
+    <div class="pl2">
+    
+    <select id="curvox" onchange="set_voice(this.value)">
+    <optgroup label="English — en">
+    <option name="Allison" value="Allison">Allison
+    </option><option name="Amy" value="Amy">Amy
+    </option><option name="Belle" value="Belle">Belle
+    </option><option name="Callie" value="Callie">Callie
+    </option><option name="CallieQ" value="CallieQ">CallieQ
+    </option><option name="Charlie" value="Charlie">Charlie
+    </option><option name="Conrad" value="Conrad">Conrad
+    </option><option name="Dallas" value="Dallas">Dallas
+    </option><option name="Damien" value="Damien">Damien
+    </option><option name="David" value="David">David
+    </option><option name="DesignerDave" value="DesignerDave">DesignerDave
+    </option><option name="Diane" value="Diane">Diane
+    </option><option name="Diesel" value="Diesel">Diesel
+    </option><option name="Dog" value="Dog">Dog
+    </option><option name="Duchess" value="Duchess">Duchess
+    </option><option name="Duncan" value="Duncan">Duncan
+    </option><option name="Emily" value="Emily">Emily
+    </option><option name="EvilGenius" value="EvilGenius">EvilGenius
+    </option><option name="Frank" value="Frank">Frank
+    </option><option name="French-fry" value="French-fry">French-fry
+    </option><option name="Gregory" value="Gregory">Gregory
+    </option><option name="JerkFace" value="JerkFace">JerkFace
+    </option><option name="JerseyGirl" value="JerseyGirl">JerseyGirl
+    </option><option name="Kayla" value="Kayla">Kayla
+    </option><option name="Kevin" value="Kevin">Kevin
+    </option><option name="Kidaroo" value="Kidaroo">Kidaroo
+    </option><option name="Lawrence" value="Lawrence">Lawrence
+    </option><option name="Layo" value="Layo">Layo
+    </option><option name="Linda" value="Linda">Linda
+    </option><option name="Millie" value="Millie">Millie
+    </option><option name="Princess" value="Princess">Princess
+    </option><option name="RansomNote" value="RansomNote">RansomNote
+    </option><option name="Robin" value="Robin">Robin
+    </option><option name="Robot" value="Robot">Robot
+    </option><option name="Shouty" value="Shouty">Shouty
+    </option><option name="ShyGirl" value="ShyGirl">ShyGirl
+    </option><option name="Susan" value="Susan">Susan
+    </option><option name="Tamika" value="Tamika">Tamika
+    </option><option name="TopHat" value="TopHat">TopHat
+    </option><option name="Vixen" value="Vixen">Vixen
+    </option><option name="Vlad" value="Vlad">Vlad
+    </option><option name="Walter" value="Walter">Walter
+    </option><option name="WarrenPeas" value="WarrenPeas">WarrenPeas
+    </option><option name="Whispery" value="Whispery">Whispery
+    </option><option name="William" value="William">William
+    </option><option name="Wiseguy" value="Wiseguy">Wiseguy
+    </option><option name="Zach" value="Zach">Zach
+    </option></optgroup><optgroup label="French — fr">
+    <option name="Isabelle" value="Isabelle">Isabelle
+    </option><option name="Jean-Pierre" value="Jean-Pierre">Jean-Pierre
+    </option></optgroup><optgroup label="German — de">
+    <option name="Katrin" value="Katrin">Katrin
+    </option><option name="Matthias" value="Matthias">Matthias
+    </option></optgroup><optgroup label="Italian — it">
+    <option name="Vittoria" value="Vittoria">Vittoria
+    </option></optgroup><optgroup label="Spanish — es">
+    <option name="Marta" value="Marta">Marta
+    </option><option name="Miguel" value="Miguel">Miguel
+    </option></optgroup></select>
+    
+    <div id="status">Ready<audio style="float:right;" autoplay="autoplay" onloadeddata="onAudioLoad();">
+                                  <source id="oggSource" src="https://www.voiceforge.com/demos/audio/01i5791419a4j5lovv92nmtfj3.1585161889916.ogg" type="audio/ogg">
+                                  <source id="mp3Source" src="https://www.voiceforge.com/demos/audio/01i5791419a4j5lovv92nmtfj3.1585161889916.mp3" type="audio/mp3">
+                                  Your browser does not support the audio element, please upgrade to a newer version of your browser.
+                    </audio></div>
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    <ul class="voicelist">
+    <li><a href="#" onclick="return set_voice('Allison');"><img alt="Allison" src="https://www.voiceforge.com/images/voices/enhanced/Allison.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Amy');"><img alt="Amy" src="https://www.voiceforge.com/images/voices/icons/Amy.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Belle');"><img alt="Belle" src="https://www.voiceforge.com/images/voices/enhanced/Belle.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Callie');"><img alt="Callie" src="https://www.voiceforge.com/images/voices/enhanced/Callie.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('CallieQ');"><img alt="CallieQ" src="https://www.voiceforge.com/images/voices/icons/CallieQ.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Charlie');"><img alt="Charlie" src="https://www.voiceforge.com/images/voices/icons/Charlie.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Conrad');"><img alt="Conrad" src="https://www.voiceforge.com/images/voices/icons/Conrad.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Damien');"><img alt="Damien" src="https://www.voiceforge.com/images/voices/icons/Damien.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Dallas');"><img alt="Dallas" src="https://www.voiceforge.com/images/voices/enhanced/Dallas.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('David');"><img alt="David" src="https://www.voiceforge.com/images/voices/enhanced/David.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('DesignerDave');"><img alt="DesignerDave" src="https://www.voiceforge.com/images/voices/icons/DesignerDave.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Diane');"><img alt="Diane" src="https://www.voiceforge.com/images/voices/icons/Diane.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Diesel');"><img alt="Diesel" src="https://www.voiceforge.com/images/voices/icons/Diesel.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Dog');"><img alt="Dog" src="https://www.voiceforge.com/images/voices/icons/Dog.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Duchess');"><img alt="Duchess" src="https://www.voiceforge.com/images/voices/icons/Duchess.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Duncan');"><img alt="Duncan" src="https://www.voiceforge.com/images/voices/icons/Duncan.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Emily');"><img alt="Emily" src="https://www.voiceforge.com/images/voices/icons/Emily.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('EvilGenius');"><img alt="EvilGenius" src="/images/voices/icons/EvilGenius.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Frank');"><img alt="Frank" src="/images/voices/icons/Frank.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('French-fry');"><img alt="French-fry" src="https://www.voiceforge.com/images/voices/enhanced/French-fry.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Gregory');"><img alt="Gregory" src="https://www.voiceforge.com/images/voices/icons/Gregory.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Isabelle');"><img alt="Isabelle" src="https://www.voiceforge.com/images/voices/icons/Isabelle.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Jean-Pierre');"><img alt="Jean-Pierre" src="https://www.voiceforge.com/images/voices/icons/Jean-Pierre.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('JerkFace');"><img alt="JerkFace" src="https://www.voiceforge.com/images/voices/icons/JerkFace.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('JerseyGirl');"><img alt="JerseyGirl" src="https://www.voiceforge.com/images/voices/icons/JerseyGirl.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Katrin');"><img alt="Katrin" src="https://www.voiceforge.com/images/voices/icons/Katrin.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Kayla');"><img alt="Kayla" src="https://www.voiceforge.com/images/voices/icons/Kayla.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Kevin');"><img alt="Kevin" src="https://www.voiceforge.com/images/voices/icons/Kevin.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Kidaroo');"><img alt="Kidaroo" src="https://www.voiceforge.com/images/voices/icons/Kidaroo.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Lawrence');"><img alt="Lawrence" src="https://www.voiceforge.com/images/voices/enhanced/Lawrence.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Layo');"><img alt="Layo" src="https://www.voiceforge.com/images/voices/icons/Layo.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Linda');"><img alt="Linda" src="https://www.voiceforge.com/images/voices/icons/Linda.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Marta');"><img alt="Marta" src="https://www.voiceforge.com/images/voices/icons/Marta.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Matthias');"><img alt="Matthias" src="https://www.voiceforge.com/images/voices/icons/Matthias.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Miguel');"><img alt="Miguel" src="https://www.voiceforge.com/images/voices/icons/Miguel.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Millie');"><img alt="Millie" src="https://www.voiceforge.com/images/voices/enhanced/Millie.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Princess');"><img alt="Princess" src="https://www.voiceforge.com/images/voices/icons/Princess.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('RansomNote');"><img alt="RansomNote" src="https://www.voiceforge.com/images/voices/icons/RansomNote.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Robin');"><img alt="Robin" src="https://www.voiceforge.com/images/voices/icons/Robin.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Robot');"><img alt="Robot" src="https://www.voiceforge.com/images/voices/icons/Robot.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Shouty');"><img alt="Shouty" src="https://www.voiceforge.com/images/voices/icons/Shouty.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('ShyGirl');"><img alt="ShyGirl" src="https://www.voiceforge.com/images/voices/icons/ShyGirl.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Susan');"><img alt="Susan" src="https://www.voiceforge.com/images/voices/icons/Susan.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Tamika');"><img alt="Tamika" src="https://www.voiceforge.com/images/voices/icons/Tamika.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('TopHat');"><img alt="TopHat" src="https://www.voiceforge.com/images/voices/icons/TopHat.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Vittoria');"><img alt="Vittoria" src="https://www.voiceforge.com/images/voices/icons/Vittoria.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Vixen');"><img alt="Vixen" src="https://www.voiceforge.com/images/voices/icons/Vixen.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Vlad');"><img alt="Vlad" src="https://www.voiceforge.com/images/voices/icons/Vlad.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Walter');"><img alt="Walter" src="https://www.voiceforge.com/images/voices/icons/Walter.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('WarrenPeas');"><img alt="WarrenPeas" src="https://www.voiceforge.com/images/voices/icons/WarrenPeas.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Whispery');"><img alt="Whispery" src="https://www.voiceforge.com/images/voices/enhanced/Whispery.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('William');"><img alt="William" src="https://www.voiceforge.com/images/voices/icons/William.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Wiseguy');"><img alt="Wiseguy" src="https://www.voiceforge.com/images/voices/icons/Wiseguy.jpg"></a>
+    </li><li><a href="#" onclick="return set_voice('Zach');"><img alt="Zach" src="https://www.voiceforge.com/images/voices/icons/Zach.jpg"></a>
+    </li></ul>
+    
+    </div>
+    
+    <footer>
+    <p>Technology and Copyright © 2010 Cepstral LLC. All Rights Reserved.</p>
+    <p class="power">Powered by: <a href="https://www.cepstral.com/"><img src="/images/cepstral-logo.gif" width="79" height="20" alt="Cepstral"></a></p>
+    </footer>
+    
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "https://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script src="https://ssl.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-2269415-4");
+    pageTracker._trackPageview();
+    </script>
+    <script>
+    set_voice = function(vox) 
+    {
+        $("#voximg").html("<img alt='"+vox+"' src='/images/voices/sqr/"+vox+".jpg'>");tmp=document.getElementById("curvox");tmp.value=vox;return false;
+    }
+    
+    function onAudioLoad()
+    {
+        var url = "/demos/deleteAudio.php";
+        $.post(url);
+    }
+    
+    $(document).ready(function(){
+        
+        $('#dtu').bind('input propertychange', function() {
+            
+            var textArea = $(this);
+            var len = textArea.val().length;
+    
+            if(len > 120)
+            {
+                textArea.val(textArea.val().substring(0, 120));
+            }
+        });
+        
+        set_voice(function(){
+            var query = window.location.search.substring(1);
+            var parms = query.split('&');
+            for (var i=0; i < parms.length; i++) 
+            {
+                var pos = parms[i].indexOf('=');
+                
+                if (pos > 0) 
+                {
+                    var key = parms[i].substring(0,pos);
+                    var val = parms[i].substring(pos+1);
+                    if(key == "uservoice")
+                    {
+                        return val;
+                    }
+                }
+            }
+            
+            return "Callie";
+        }());
+        
+        $("#play").click(function()
+        {
+            var voice = $("#curvox").val();
+            var text  = $("#dtu").val();
+            
+            var url = "https://www.voiceforge.com/demos/createAudio.php";
+            
+            $("div#status").html('<img src="https://www.cepstral.com/media/images/ajax_loader.gif" />');
+            
+            var params = {"voiceText":text, "voice":voice, "createTime":(new Date()).getTime()};
+            
+            $.get(url, params, function(data){
+                
+                $("div#status").html("Ready" + data);	
+            });
+        });
+    });
+    </script>
+    
+    
+    </body></html>
