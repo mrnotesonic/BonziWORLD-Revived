@@ -690,9 +690,9 @@ let userCommands = {
 		"i hosted uranohoshi.in and i pirate shit",
 		"i listen to baby from justin bieber",
 		"i watch numberblocks",
-		"i watch doodland and now people are calling me a doodfag",
-		"i watch bfdi and now people are calling me a objectfag",
-		"i post klasky csupo effects and now people are calling me a logofag",
+		"i watch doodland and now people are calling me a doodtard",
+		"i watch bfdi and now people are calling me a objecttard",
+		"i post klasky csupo effects and now people are calling me a logotard",
 		"i am onute saulute and i copied bonziworld revived",
 		"i listen to kpop and now i got hate",
 		"i inflate people, and body inflation is my fetish.",
@@ -708,7 +708,7 @@ let userCommands = {
 		"i copy other people's usernames",
 		"i use collaborative virtual machine to install malware",
 		"i use microsoft agent scripting helper for fighting videos against innocent people that did nothing wrong by just friendly commenting",
-		"i use microsoft agent scripting helper for gofag videos",
+		"i use microsoft agent scripting helper for gotard videos",
 		"i use hotswap for my xbox 360",
 		"i boycotted left 4 dead 2",
 		"CAN U PLZ UNBAN ME PLZ PLZ PLZ PLZ PLZ PLZ PLZ PLZ",
@@ -738,7 +738,7 @@ let userCommands = {
         "I WILL MAKE A BAD VIDEO OUT OF YOU! GRRRRRRRRRRRR!",
         "Muted",
         "FUCK YOU ITZCRAZYKIKO!!!!!!111!!1 What the fuck is a kiko?",
-        "You were the one who started the drama most of the time- WORK AT FURFAG CO YOU FUCKING GREEN MAN DICKRIDER.",
+        "You were the one who started the drama most of the time- WORK AT FURtard CO YOU FUCKING GREEN MAN DICKRIDER.",
 		"i keep watching doodland like forever now",
 		"i mined diamonds with a wooden pickaxe",
         "i kept asking for admin and now i got muted",
@@ -777,7 +777,7 @@ let userCommands = {
     },
     "zetar":function(text){
         this.room.emit('talk',{ 
-            text:`Zetar is a normie who likes to trash talk about SeamusMario55 using his slave Maya also he is a fucking Sonicfag and also is a kiddo. He even is so retarded that he even can't make SeamusMario55 cry.`,
+            text:`Zetar is a normie who likes to trash talk about SeamusMario55 using his slave Maya also he is a fucking Sonictard and also is a kiddo. He even is so retarded that he even can't make SeamusMario55 cry.`,
             guid:this.guid
         })
     },
@@ -863,14 +863,14 @@ let userCommands = {
             target: sanitize(Utils.argsString(arguments))
         });
     },
-    "gofag": function() {
-        this.room.emit("gofag", {
+    "gotard": function() {
+        this.room.emit("gotard", {
             guid: this.guid,
             target: sanitize(Utils.argsString(arguments))
         });
     },
-    "logofag": function() {
-        this.room.emit("logofag", {
+    "logotard": function() {
+        this.room.emit("logotard", {
             guid: this.guid,
             target: sanitize(Utils.argsString(arguments))
         });
@@ -959,10 +959,10 @@ let userCommands = {
 				argsString = "impersonator";
 			}
 			if (argsString.includes("Norbika9Entertainment")) {
-				argsString = "gofag";
+				argsString = "gotard";
 			}
 			if (argsString.includes("Norbika9Studios")) {
-				argsString = "gofag";
+				argsString = "gotard";
 			}
 			if (argsString.includes("Foxy")) {
 				argsString = "HEY EVERYONE LOOK AT ME I'M STALKING PEOPLE FOR 3 YEARS LMAO";
