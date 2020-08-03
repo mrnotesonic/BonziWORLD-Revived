@@ -2,7 +2,8 @@
 	"prefs": {
 		"public": {
 			"char_limit": 12000,
-			"name_limit": 25,
+			"name_limit": 100,
+			"godword": "YOURGODWORD",
 			"runlevel": {
 				"godmode": 0,
 				"youtube": 0,
@@ -20,14 +21,19 @@
 				"pawn": 0,
 				"bees": 0,
 				"vaporwave": 0,
+				"jumpscare": 3,
 				"unvaporwave": 0,
 				"clap": 0,
 				"dothegorilla": 0,
 				"sticker": 0,
 				"name": 0,
 				"owo": 0, 
+				"peedy": 4, 
 				"sanitize": 3,
 				"losky": 0,
+				"video": 3,
+				"clippy": 3,
+				"img": 3,
 				"loskyize": 3,
 				"unbojih": 3,
 				"seamus": 3,
@@ -39,9 +45,9 @@
 				"unban": 3,
 				"kick": 3,
 				"pope": 3,
-				"pope2": 3,
+				"pope2": 4,
 				"pope3": 3,
-				"pope4": 3,
+				"pope4": 4,
 				"ww3": 3
 			},
 			"room_max": 1000000,
@@ -49,6 +55,11 @@
 			"pitch": {
 				"max": 400,
 				"min": 50,
+				"default": "random"
+			},
+			"sapi5pitch": {
+				"max": 80,
+				"min": -80,
 				"default": "random"
 			},
 			"amplitude": {
@@ -65,40 +76,52 @@
 		},
 		"private": {
 			"char_limit": 12000,
-			"name_limit": 25,
-			"godword": "seamuslosky57",
+			"name_limit": 100,
+			"godword": "",
 			"runlevel": {
 				"godmode": 0,
 				"youtube": 0,
 				"joke": 0,
 				"fact": 0,
-				"join": 0,
 				"backflip": 0,
 				"color": 0,
+				"join": 0,
 				"asshole": 0,
-				"evaljs": 3,
 				"triggered": 0,
 				"linux": 0,
 				"pitch": 0,
 				"speed": 0,
+				"evaljs": 3,
+				"peedy": 4,
 				"pawn": 0,
 				"bees": 0,
 				"vaporwave": 0,
+				"jumpscare": 3,
 				"unvaporwave": 0,
+				"clap": 0,
+				"dothegorilla": 0,
+				"sticker": 0,
 				"name": 0,
-				"owo": 0,
+				"owo": 0, 
 				"sanitize": 3,
+				"losky": 0,
+				"video": 3,
+				"clippy": 3,
+				"img": 3,
+				"loskyize": 3,
+				"unbojih": 3,
+				"seamus": 3,
 				"ban": 3,
-				"unban": 3,
 				"ban_menu": 3,
 				"kick_menu": 3,
 				"warn_menu": 3,
 				"iframe": 3,
+				"unban": 3,
 				"kick": 3,
-				"pope": 3,
-				"pope2": 3,
-				"pope3": 3,
-				"pope4": 3,
+				"pope": 0,
+				"pope2": 4,
+				"pope3": 0,
+				"pope4": 4,
 				"ww3": 3
 			},
 			"room_max": 1000000,
@@ -106,6 +129,11 @@
 			"pitch": {
 				"max": 400,
 				"min": 50,
+				"default": "random"
+			},
+			"sapi5pitch": {
+				"max": 80,
+				"min": -80,
 				"default": "random"
 			},
 			"amplitude": {
@@ -164,15 +192,19 @@
 		"grey",
 		"clippy",
 		"peedy",
-		"rover",
-		"red_clippy",
 		"merlin",
-		"max",
+		"rover",
 		"robby",
-		"genie"
+		"max",
+		"genie",
+		"red_clippy"
+	],
+	"bonziColors2": [ 
+		"god",
+		"losky"
 	],
 	"banLength": 1440,
-	"port": 3000,
+	"port": 2095,
 	"express": {
 		"serveStatic": true
 	}
