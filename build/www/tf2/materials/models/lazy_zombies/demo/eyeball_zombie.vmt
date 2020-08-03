@@ -1,0 +1,6 @@
+"UnLitGeneric"
+{
+	"$basetexture"	"models/lazy_zombies/shared/eyeball_invun"
+	"$surfaceprop"	"flesh"
+	"$model"		1
+}

@@ -8,6 +8,8 @@ var urlChrome = "https://chrome.google.com/webstore/detail/bonziworld/naiglhkfak
 var isiOS = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)/i) != null;
 var urlGPlay = "https://play.google.com/store/apps/details?id=com.jojudge.bonziworld";
 
+// Get the voice select element.
+var voiceSelect = document.getElementById('voice');
 $(function() {
 	var support = {
 		AudioContext: {

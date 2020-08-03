@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/lazy_zombies/spy/eyeball_zombie"
+	"$surfaceprop"	"flesh"
+	"$alphatest" 1
+}

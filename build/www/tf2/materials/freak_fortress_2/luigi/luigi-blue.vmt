@@ -1,0 +1,14 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "freak_fortress_2\luigi\luigi-blue"
+	
+	// Cloaking
+	"$cloakPassEnabled" "1"
+
+	"Proxies"
+	{
+		"weapon_invis"
+		{
+		}
+	}
+}

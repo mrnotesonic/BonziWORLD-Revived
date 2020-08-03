@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/weapons/losky_pm/c_arms_losky"
+	"$nolod" 1
+}

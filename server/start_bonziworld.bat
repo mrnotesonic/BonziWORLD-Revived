@@ -1,0 +1,6 @@
+
+echo Starting BWR Bot....
+start start_bot.bat
+echo Starting BWR...
+node index.js
+pause

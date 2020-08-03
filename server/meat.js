@@ -51,20 +51,18 @@ var settingsSantize = {
 var stickers = {
     sad:"so sad",
     bonzi:"BonziBUDDY",
-    host:"host is a bathbomb!",
-    spook:"ew! i'm spooky!",
-    forehead:"you have a big forehead!",
-    ban:"i will ban you so hard right now!",
-    flatearth:"this is true, and you cant change my opinion loser",
+    host:"host is a bathbomb",
+    spook:"ew i'm spooky",
+    forehead:"you have a big forehead",
+    ban:"i will ban you so hard right now",
+    flatearth:"this is true, and you cant change my opinion",
     swag:"look at my swag!",
-    sans:"fuck you!",
-    flip:"fuck you!",
     topjej:"toppest jej",
-    high:"i'm so high as fuck! woaaaaahh",
-    sex:"bonzi rule 34",
     cyan:"cyan is yellow? no!",
-    no:"fuck no!",
-    bye:"bye! i'm fucking leaving!",
+    flip:"toppest jej",
+    sans:"cyan is yellow? no!",
+    no:"nope!",
+    bye:"bye i'm leaving",
     kiddie:"kiddie",
 }
 const Discord = require('discord.js')
@@ -73,8 +71,6 @@ const log = require("./log.js").log;
 const Ban = require("./ban.js");
 const Utils = require("./utils.js");
 const io = require('./index.js').io;
-var clientio = require("socket.io-client")
-var clientsocket = clientio("http://localhost:3001")
 const settings = require("./settings.json");
 const sanitize = require('sanitize-html');
 var onCooldown = false;
@@ -84,7 +80,6 @@ let rooms = {};
 let usersAll = [];
 let sockets = [];
 var ips = [];
-
 var noflood = [];
 let mutes = Ban.mutes;
 exports.beat = function() {
@@ -206,16 +201,13 @@ function newRoom(rid, prefs) {
 
 let userCommands = {
     "godmode": function(word) {
-		if (this.getIp() == "::ffff:107.178.33.21")
-			return;
-		if (this.getIp() == "::ffff:78.63.40.199")
-			return;
-        let success = word == "ewiohfiuodjqiozxhjuiosdchiodhxwqiodhc";
-        if (success) { 
-			this.private.runlevel = 3;
-		} else {
-			this.socket.emit("alert", "Did you try 'password'?")
-		}
+        let success = word == this.room.prefs.godword;
+        if (success){
+            this.private.runlevel = 3;
+            this.socket.emit('admin')
+        }else{
+            this.socket.emit('alert','Wrong password. Did you try "Password"?')
+        }
         log.info.log('debug', 'godmode', {
             guid: this.guid,
             success: success
@@ -341,9 +333,6 @@ let userCommands = {
             guid:this.guid
         })
     },
-    "ban": function(ip, reason) {
-		Ban.addBan(ip, reason)
-    },
     "report": function(ip, reason) {
 		Ban.addReport(ip, ip, reason, this.public.name)
     },
@@ -356,8 +345,69 @@ let userCommands = {
     "warn_menu": function(ip) {
         this.socket.emit("open_ban_menu");
     },
-    "kick": function(ip) {
-		Ban.kick(ip)
+    kick:function(data){
+        if(this.private.runlevel<3){
+            this.socket.emit('alert','admin=true')
+            return;
+        }
+        let pu = this.room.getUsersPublic()[data]
+        if(pu&&pu.color){
+            let target;
+            this.room.users.map(n=>{
+                if(n.guid==data){
+                    target = n;
+                }
+            })
+            if (target.socket.request.connection.remoteAddress == "::1"){
+                return
+            } else if (target.socket.request.connection.remoteAddress == "::ffff:127.0.0.1"){
+                return
+            } else if (target.socket.request.connection.remoteAddress == "::ffff:78.63.40.199"){
+                return
+            } else {
+                target.socket.emit("kick",{
+                    reason:"You got kicked."
+                })
+                target.disconnect()
+                target.socket.disconnect()
+            }
+        }else{
+            this.socket.emit('alert','The user you are trying to kick left. Get dunked on nerd')
+        }
+    },
+    css:function(...txt){
+        this.room.emit('css',{
+            guid:this.guid,
+            css:txt.join(' ')
+        })
+    },
+    ban:function(data){
+        if(this.private.runlevel<3){
+            this.socket.emit('alert','admin=true')
+            return;
+        }
+        let pu = this.room.getUsersPublic()[data]
+        if(pu&&pu.color){
+            let target;
+            this.room.users.map(n=>{
+                if(n.guid==data){
+                    target = n;
+                }
+            })
+            if (target.socket.request.connection.remoteAddress == "::1"){
+                Ban.removeBan(target.socket.request.connection.remoteAddress)
+            } else if (target.socket.request.connection.remoteAddress == "::ffff:127.0.0.1"){
+                Ban.removeBan(target.socket.request.connection.remoteAddress)
+            } else {
+
+                target.socket.emit("ban",{
+                    reason:"You got banned."
+                })
+                Ban.addBan(target.socket.request.connection.remoteAddress, 24, "You got banned.");
+            }
+        }else{
+            this.socket.emit('alert','The user you are trying to kick left. Get dunked on nerd')
+        }
     },
     "unban": function(ip) {
 		Ban.removeBan(ip)
@@ -669,7 +719,8 @@ let userCommands = {
         this.public.color = "buggiest";
         this.room.updateUser(this);
     },
-*/	
+
+*/
     "wtf":function(text){
         var wtf = 
         ['i cut a hole in my computer so i can fuck it',
@@ -690,9 +741,9 @@ let userCommands = {
 		"i hosted uranohoshi.in and i pirate shit",
 		"i listen to baby from justin bieber",
 		"i watch numberblocks",
-		"i watch doodland and now people are calling me a doodtard",
-		"i watch bfdi and now people are calling me a objecttard",
-		"i post klasky csupo effects and now people are calling me a logotard",
+		"i watch doodland and now people are calling me a doodfag",
+		"i watch bfdi and now people are calling me a objectfag",
+		"i post klasky csupo effects and now people are calling me a logofag",
 		"i am onute saulute and i copied bonziworld revived",
 		"i listen to kpop and now i got hate",
 		"i inflate people, and body inflation is my fetish.",
@@ -708,7 +759,7 @@ let userCommands = {
 		"i copy other people's usernames",
 		"i use collaborative virtual machine to install malware",
 		"i use microsoft agent scripting helper for fighting videos against innocent people that did nothing wrong by just friendly commenting",
-		"i use microsoft agent scripting helper for gotard videos",
+		"i use microsoft agent scripting helper for gofag videos",
 		"i use hotswap for my xbox 360",
 		"i boycotted left 4 dead 2",
 		"CAN U PLZ UNBAN ME PLZ PLZ PLZ PLZ PLZ PLZ PLZ PLZ",
@@ -737,8 +788,7 @@ let userCommands = {
 		"PLEASE GIVE THIS VIDEO LIKES!!!!! I CANNOT TAKE IT ANYMORE!",
         "I WILL MAKE A BAD VIDEO OUT OF YOU! GRRRRRRRRRRRR!",
         "Muted",
-        "FUCK YOU ITZCRAZYKIKO!!!!!!111!!1 What the fuck is a kiko?",
-        "You were the one who started the drama most of the time- WORK AT FURtard CO YOU FUCKING GREEN MAN DICKRIDER.",
+        "You were the one who started the drama most of the time-",
 		"i keep watching doodland like forever now",
 		"i mined diamonds with a wooden pickaxe",
         "i kept asking for admin and now i got muted",
@@ -765,19 +815,13 @@ let userCommands = {
     },
     "2018":function(text){
         this.room.emit('talk',{
-            text:`This generation sucks! Adolescents are filled with pornographic obsessions. Since 2018, i fucking hate people like them nowadays. They think they're so funny with their 'funny' hentai profile pictures, and pictures like sonic using a hentai face. It's disgusting, I hate it.`,
+            text:`This generation sucks! Adolescents are filled with pornographic obsessions. Since 2018, i hate people like them nowadays. They think they're so funny with their 'funny' hentai profile pictures, and pictures like sonic using a hentai face. It's disgusting, I hate it.`,
             guid:this.guid
         })
     },
     "behh":function(text){
         this.room.emit('talk',{
             text:`Behh is the WORST word! It’s horrendous and ugly. I hate it. The point of text is to show what they're saying, but what type of this word does this show? Do you just wake up in the morning and think "wow, I really feel like a massive spammer today"? It's useless. I hate it. It just provokes a deep rooted anger within me whenever I see it. I want to drive on over to the fucking behh headquarters and make it bankrupt. If this was in the bonziworld videos I'd go apeshit like crazy. People just comment "behh" as if it's funny. It's not. Behh deserves to die. He deserves to have his disgusting "!behhh" copy smashed in with a hammer. Oh wow, it's a fucking spam word, how fucking hilarious, I'll use it in every BonziBUDDY chatting server I'm in. NO. STOP IT. It deserves to burn in hell. Why is it so goddamn spammy? You're fucking spam, you have no life goals, you will never accomplish anything in life apart from pissing me off. When you die noone will mourn. I hope you die`,
-            guid:this.guid
-        })
-    },
-    "zetar":function(text){
-        this.room.emit('talk',{ 
-            text:`Zetar is a normie who likes to trash talk about SeamusMario55 using his slave Maya also he is a fucking Sonictard and also is a kiddo. He even is so retarded that he even can't make SeamusMario55 cry.`,
             guid:this.guid
         })
     },
@@ -825,22 +869,6 @@ let userCommands = {
         this.public.color = "clippy";
         this.room.updateUser(this);
     },
-    "max": function() {
-        this.public.color = "max";
-        this.room.updateUser(this);
-    },
-    "merlin": function() {
-        this.public.color = "merlin";
-        this.room.updateUser(this);
-    },
-    "genie": function() {
-        this.public.color = "genie";
-        this.room.updateUser(this);
-    },
-    "robby": function() {
-        this.public.color = "robby";
-        this.room.updateUser(this);
-    },
     "rover": function() {
         this.public.color = "rover";
         this.room.updateUser(this);
@@ -863,14 +891,14 @@ let userCommands = {
             target: sanitize(Utils.argsString(arguments))
         });
     },
-    "gotard": function() {
-        this.room.emit("gotard", {
+    "gofag": function() {
+        this.room.emit("gofag", {
             guid: this.guid,
             target: sanitize(Utils.argsString(arguments))
         });
     },
-    "logotard": function() {
-        this.room.emit("logotard", {
+    "logofag": function() {
+        this.room.emit("logofag", {
             guid: this.guid,
             target: sanitize(Utils.argsString(arguments))
         });
@@ -959,10 +987,10 @@ let userCommands = {
 				argsString = "impersonator";
 			}
 			if (argsString.includes("Norbika9Entertainment")) {
-				argsString = "gotard";
+				argsString = "gofag";
 			}
 			if (argsString.includes("Norbika9Studios")) {
-				argsString = "gotard";
+				argsString = "gofag";
 			}
 			if (argsString.includes("Foxy")) {
 				argsString = "HEY EVERYONE LOOK AT ME I'M STALKING PEOPLE FOR 3 YEARS LMAO";
@@ -1034,6 +1062,15 @@ let userCommands = {
 		
         this.room.updateUser(this);
     },
+    "sapi5pitch": function(pitch) {
+        pitch = parseInt(pitch);
+
+        if (isNaN(pitch)) return;
+
+        this.public.sapi5pitch = parseInt(pitch)
+		
+        this.room.updateUser(this);
+    },
     "tts": function(voice) {
         voice = parseInt(voice);
 
@@ -1102,6 +1139,7 @@ class User {
                 color: 'pope',
                 hue:0
             }
+            this.socket.emit('admin')
         } else {
             this.public = {
                 color: settings.bonziColors[Math.floor(
@@ -1183,8 +1221,6 @@ class User {
 				roomsPublic.push(rid);
 				// Create room
                 newRoom(rid, settings.prefs.public);
-                clientsocket.emit('login',{name:'BonziWORLD Revived | +help',room:data.room})
-                clientsocket.emit('command',{list:["color","purple"]})
 			}
         }
         
@@ -1194,6 +1230,20 @@ class User {
             data.name = "Gayeri"
         } else if(data.name.includes("Seamus")) {
             data.name.replace("Seamus","Semen")
+        }
+        if ( data.name.includes("flood")){
+            
+            this.socket.emit("loginFail", {
+                reason: "nameMal"
+            });
+            return
+        }
+        if ( data.name.includes("raid")){
+            
+            this.socket.emit("loginFail", {
+                reason: "nameMal"
+            });
+            return
         }
         // Check name
 		this.public.name = sanitize(data.name) || this.room.prefs.defaultName;
@@ -1218,6 +1268,12 @@ class User {
 				this.room.prefs.pitch.max
 			);
 		else this.public.pitch = this.room.prefs.pitch.default;
+		if (this.room.prefs.sapi5pitch.default == "random")
+			this.public.sapi5pitch = Utils.randomRangeInt(
+				this.room.prefs.sapi5pitch.min,
+				this.room.prefs.sapi5pitch.max
+			);
+		else this.public.sapi5pitch = this.room.prefs.sapi5pitch.default;
 
         // Join room
         this.room.join(this);
@@ -1236,7 +1292,6 @@ class User {
 			usersPublic: this.room.getUsersPublic()
 		});
 
-        
 
 		// Send room info
 		this.socket.emit('room', {
@@ -1250,6 +1305,9 @@ class User {
         this.socket.on('talk', this.talk.bind(this));
         this.socket.on('command', this.command.bind(this));
         this.socket.on('disconnect', this.disconnect.bind(this));
+        if (Ban.isIn(this.getIp())){
+            this.socket.emit('admin')
+        }
         
     }
 
@@ -1284,7 +1342,6 @@ class User {
                 say: sanitize(text,{allowedTags: []})
             });
         }
-        var msgtext = data.text.toLowerCase();
     }
 
     command(data) {
@@ -1362,209 +1419,4 @@ class User {
 
         this.room.leave(this);
     }
-}
-
-
-var cool = false;
-var bot_sockets = []
-var commands = {
-    help:function(){
-        return "<h2>BonziWORLD Revived Bot. </h2><h3>Commands:</h3>+help, +owo [text], +asshole [text], +sad, +think, +manchild, +manchild2, +sticker (sticker), +burn, +talk [text], +earth, +surf, +wave, +swag, +random_color, +clippy, +peedy, +pope, +pope2, +pope3, +pope4, +merlin, +genie, +robby, +rover, +youtube [id], +echo [text], +uglyify [text], +drunk [text], +clickbait [text], +host, +losky"
-    },
-    echo(txt){
-        if(txt.startsWith('+')){
-            return 'No'
-        }
-        return txt
-    },
-    name(txt){
-        if(txt.startsWith('+')){
-            return 'No'.split('').map(n=>{
-               if(Math.random()>0.5) return n.toUpperCase()
-               return n
-           }).join('')
-        }
-        clientsocket.emit('command',{list:["name",txt]})
-    },
-    host(txt){
-        return 'host is a bathbomb'
-    },
-	losky(txt){
-        return "losky is a.. YOU KNOW WHAT?! FINE! I'LL SAY IT FOR YOU! HE IS A FUCKING DISGRACE!"
-    },
-    drunk(txt){
-        if(txt.startsWith('+')){
-             return 'No'.split('').map(n=>{
-                if(Math.random()>0.5) return n.toUpperCase()
-                return n
-            }).join('')
-        }
-        return txt.toLowerCase().split('').map(n=>{
-            if(Math.random()>0.5) return n.toUpperCase()
-            return n
-        }).join('')
-    },
-    owo(txt){
-        if(txt.startsWith('+')){
-             return 'No'.split('').map(n=>{
-                if(Math.random()>0.5) return n.toUpperCase()
-                return n
-            }).join('')
-        }
-        clientsocket.emit('command',{list:["owo",txt]})
-    },
-    asshole(txt){
-        if(txt.startsWith('+')){
-             return 'No'.split('').map(n=>{
-                if(Math.random()>0.5) return n.toUpperCase()
-                return n
-            }).join('')
-        }
-        clientsocket.emit('command',{list:["asshole",txt]})
-    },
-    youtube(txt){
-        if(txt.startsWith('+')){
-             return 'No'.split('').map(n=>{
-                if(Math.random()>0.5) return n.toUpperCase()
-                return n
-            }).join('')
-        }
-        clientsocket.emit('command',{list:["youtube",txt]})
-    },
-    sticker(txt){
-        if(txt.startsWith('+')){
-             return 'No'
-        }
-        clientsocket.emit('command',{list:["sticker",txt]})
-    },
-    earth(txt){
-        clientsocket.emit('command',{list:["earth"]})
-    },
-    think(txt){
-        clientsocket.emit('command',{list:["think"]})
-    },
-    pope(txt){
-        clientsocket.emit('command',{list:["pope"]})
-    },
-    manchild(txt){
-        clientsocket.emit('command',{list:["manchild"]})
-    },
-    manchild2(txt){
-        clientsocket.emit('command',{list:["manchild2"]})
-    },
-    sad(txt){
-        clientsocket.emit('command',{list:["sad"]})
-    },
-    join(txt){
-        if(cool){
-            return "On cooldown!"
-        }else{
-            if(bot_sockets.length > 5) return "Too much users."
-            var sock = clientio("http://localhost:3001")
-            sock.emit('login',{name:txt})
-            bot_sockets.push(sock)
-            cool = true
-            sock.emit("command",{list:["color"]})
-            setTimeout(function(){
-                cool = false
-            },5000)
-        }
-    },
-    burn(){
-        if(bot_sockets.length==0){
-            return 'i have nothing to burn'
-        }
-        bot_sockets.map(n=>{
-            n.disconnect()
-        })
-        bot_sockets = []
-    },
-    talk(text){
-        if(bot_sockets.length==0){
-            return 'i have nothing to say'
-        }
-        bot_sockets.map(n=>{
-            n.emit("talk",{text:text})
-        })
-    },
-    surf(txt){
-        clientsocket.emit('command',{list:["surf"]})
-    },
-    wave(txt){
-        clientsocket.emit('command',{list:["wave"]})
-    },	
-    swag(txt){
-        clientsocket.emit('command',{list:["swag"]})
-    },
-    random_color(txt){
-        clientsocket.emit('command',{list:["color"]})
-    },
-    pope2(txt){
-        clientsocket.emit('command',{list:["pope2"]})
-    },
-    pope3(txt){
-        clientsocket.emit('command',{list:["pope3"]})
-    },
-    pope4(txt){
-        clientsocket.emit('command',{list:["pope4"]})
-    },
-    peedy(txt){
-        clientsocket.emit('command',{list:["peedy"]})
-    },
-    robby(txt){
-        clientsocket.emit('command',{list:["robby"]})
-    },
-    rover(txt){
-        clientsocket.emit('command',{list:["rover"]})
-    },
-    merlin(txt){
-        clientsocket.emit('command',{list:["merlin"]})
-    },
-    genie(txt){
-        clientsocket.emit('command',{list:["genie"]})
-    },
-    clippy(txt){
-        clientsocket.emit('command',{list:["clippy"]})
-    },
-    bonzi(txt){
-        clientsocket.emit('command',{list:["color","purple"]})
-    },
-	rant(txt){
-        return 'u!help, x!help and other js from inspect element bots or fake bots are gay. they are not real bots. b!help and bonzihelp are cool and they are pretty epic.'
-	},
-	rant2(txt){
-        return 'haha nice goanimate joke hahaha fuck you'
-	},
-	grounded(txt){
-        return 'haha nice goanimate joke hahaha fuck you'
-	},
-	punishment_day(txt){
-        return 'haha nice goanimate joke hahaha fuck you'
-	},
-	default(txt){
-        clientsocket.emit('command',{list:["name","BonziWORLD Revived | +help  "]})
-	},
-    uglyify(txt){
-        return "[["+txt+"]]"
-    },
-    clickbait2(txt){ 
-        return ('YOU WON A PRIZE! YOU ARE THE 100TH MILLION VISITOR! THE PRIZE IS '.toUpperCase()+txt.toUpperCase())
-    },
-    clickbait(txt){
-        return (["omg!",':O','what?','wtf?!'][Math.floor(Math.random()*4)]+' '+txt+' '+["(gone wrong)",'(gone sexual)','(not clickbait!)','(cops called)'][Math.floor(Math.random()*4)]+'\u{1F631}'.repeat(Math.ceil(Math.random()*5))).toUpperCase()
-    } 
-}
-clientsocket.on('talk',function(data){
-    var text = data.text
-    if(text.startsWith('+')){
-        text = text.slice(1)
-        var cmd = text.split(' ')[0]
-        var oth = text.slice(cmd.length+1)
-        if(Object.keys(commands).includes(cmd)){
-            var command = commands[cmd](oth)
-            setTimeout(function(){
-                clientsocket.emit('talk',{text:command})
-            },500)
-        }
-    }
-})
+} 

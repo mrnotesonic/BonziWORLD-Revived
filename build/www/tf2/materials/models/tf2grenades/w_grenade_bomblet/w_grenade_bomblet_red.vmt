@@ -1,0 +1,14 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\tf2grenades\w_grenade_bomblet\w_grenade_bomblet_red"
+	"$lightwarptexture" "models\lightwarps\weapon_lightwarp"
+	"$bumpmap" "models\effects\flat_normal"
+	"$phong" "1"
+	"$phongexponent" "6"
+	"$phongboost" ".5"	
+	"$phongfresnelranges"	"[.3 .5 .6]"
+	"$halflambert" "1"
+	"$rimlight" "1"
+	"$rimlightexponent" "2"
+	"$rimlightboost" "1"
+}

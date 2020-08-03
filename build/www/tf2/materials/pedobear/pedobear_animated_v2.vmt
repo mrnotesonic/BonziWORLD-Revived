@@ -1,0 +1,15 @@
+"UnlitGeneric"
+{
+	"$basetexture" "pedobear/pedobear_animated_v2"
+	"$vertexcolor" 1
+	"$vertexalpha" 1
+	"Proxies" 
+    	{ 
+      		"AnimatedTexture" 
+       		{ 
+          			"animatedTextureVar" "$basetexture" 
+          			"animatedTextureFrameNumVar" "$frame" 
+          			"animatedTextureFrameRate" "1.6"
+       		}
+   	 }
+}

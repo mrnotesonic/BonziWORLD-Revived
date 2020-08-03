@@ -1,0 +1,16 @@
+{
+  "name": "bonzibot",
+  "version": "1.2.0",
+  "description": "A simple bonzi bot.",
+  "main": "index.js",
+  "dependencies": {
+    "espeak": "^0.0.3",
+    "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

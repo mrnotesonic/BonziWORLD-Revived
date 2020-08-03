@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "mstr\brofist_b"
+	"$translucent" 1
+	"$ignorez"     "1"
+	"$no_fullbright" "1"	
+}

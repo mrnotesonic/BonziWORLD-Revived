@@ -1,0 +1,9 @@
+"UnlitGeneric"
+{
+	"$basetexture" "free_duel/BLU_Target"
+	"$additive" 1
+	"$vertexcolor" 1
+	"$vertexalpha" 1
+	"%keywords" "tf"
+	"$translucent" 1
+}

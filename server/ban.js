@@ -127,7 +127,6 @@ exports.handleBan = function(socket) {
 };
 exports.handleReport = function(name) {
 	var ip = name;
-	// Make your own handled function
 	return true;
 };
 exports.handleMute = function(socket) {
@@ -218,6 +217,7 @@ exports.addReport = function(name, username, reason, reporter) {
 	exports.handleReport(name);
 	exports.saveReport();
 };
+
 exports.login = function(ip, reason) {
 	var sockets = io.sockets.sockets;
 	var socketList = Object.keys(sockets);

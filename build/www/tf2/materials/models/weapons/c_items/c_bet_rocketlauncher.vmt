@@ -1,0 +1,50 @@
+"VertexLitGeneric"
+{
+	"$basetexture"	"models\weapons\c_items\c_bet_rocketlauncher"
+	
+	"$glowcolor" "1"
+	"$phong" "1"
+	"$phongexponent" "20"
+	"$phongboost" "7"	
+
+	"$lightwarptexture" "models\lightwarps\weapon_lightwarp"
+	"$phongfresnelranges"	"[2 1 4]"
+	"$halflambert" "1"
+//	"$selfillum" "1"
+
+	"$basephongexponent" "7.5"
+	"$basephongboost" "5"
+
+	"$basemapalphaphongmask" "1"
+	
+	// Rim lighting parameters
+	"$rimlight" "1"					
+	"$rimlightexponent" "4"		
+	"$rimlightboost" "1"
+
+	// Cloaking
+	"$cloakPassEnabled" "1"
+	"Proxies"
+	{
+		"weapon_invis"
+		{
+		}
+		"ModelGlowColor"
+		{
+			"resultVar""$glowcolor"
+		}
+		"Equals"
+		{
+			"srcVar1"	"$glowcolor"
+			"resultVar"	"$selfillumtint"
+		}
+		"Equals"
+		{
+			"srcVar1"	"$glowcolor"
+			"resultVar"	"$color2"
+		}
+		"spy_invis"
+		{
+		}
+	}
+}

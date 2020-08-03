@@ -1,0 +1,18 @@
+"UnlitGeneric"
+{
+	"$basetexture" "models/weapons/portalgun/pcenter"
+	"$additive"	"1"
+	"$translucent" "1"
+	"$nocull" "1"
+	"$model" "1"
+	"$frame" "0"
+	"Proxies"
+	{
+		"AnimatedTexture"
+		{
+			"animatedTextureVar" "$basetexture"
+			"animatedTextureFrameNumVar" "$frame"
+			"animatedTextureFrameRate" "26"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "stone_m/stv_model/baldi_tex"
+
+	"$nocull" "1"
+
+	"$yellow" "0"
+	"$one" "1"
+
+	"$phong" "1"
+	"$phongexponent" "3"
+	"$phongboost" "1"	
+	"$phongfresnelranges"	"[0.50 0.5 1]"
+	"$halflambert" "1"
+
+
+}
