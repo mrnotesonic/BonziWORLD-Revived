@@ -1,7 +1,10 @@
 # BonziWORLD Revived
 
 The offical website has closed down, but this responistory will still remain unarchived for upcoming updates (3.0.2 only!)
+
 Most of the content in this open source fork of a shitty chat site is unfunny and shittly made, we understand your criticism though.
+
+
 All the source code for the server and client is publically available here. If you want to run your own BonziWORLD, by all means go ahead. Do whatever you'd like with this code. Just try to put me somewhere in the credits.
 
 ## Dependencies
