@@ -3,7 +3,7 @@
 // ========================================================================
 
 // Filesystem reading functions
-const fs = require('fs');
+const fs = require('fs-extra');
 
 // Load settings
 try {
