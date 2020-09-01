@@ -204,7 +204,7 @@
 		"losky"
 	],
 	"banLength": 1440,
-	"port": 2095,
+	"port": 3000,
 	"express": {
 		"serveStatic": true
 	}
