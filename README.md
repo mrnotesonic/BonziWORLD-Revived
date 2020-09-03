@@ -1,6 +1,6 @@
 # BonziWORLD Revived
 
-The offical website has closed down, but this responistory will still remain unarchived for upcoming updates (3.0.2 only!)
+ok so the offical site shut down so yeah
 
 Most of the content in this open source fork of a shitty chat site is unfunny and shittly made, we understand your criticism though.
 
